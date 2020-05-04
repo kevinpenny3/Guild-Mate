@@ -9,6 +9,7 @@ namespace Guildmate.Models
     {
         public int GuildId { get; set; }
         public string Name { get; set; }
+        public int CharacterId { get; set; }
         public int ServerId { get; set; }
         public int FactionId { get; set; }
         public string Banner { get; set; }

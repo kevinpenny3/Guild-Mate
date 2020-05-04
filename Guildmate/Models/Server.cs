@@ -9,6 +9,6 @@ namespace Guildmate.Models
     {
         public int ServerId { get; set; }
         public string Name { get; set; }
-        public string RegionId { get; set; }
+        public int RegionId { get; set; }
     }
 }

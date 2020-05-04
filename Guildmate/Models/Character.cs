@@ -8,6 +8,7 @@ namespace Guildmate.Models
     public class Character
     {
         public int CharacterId { get; set; }
+        public string UserId { get; set; }
         public string Name { get; set; }
         public int ClassId { get; set; }
         public int RaceId { get; set; }
