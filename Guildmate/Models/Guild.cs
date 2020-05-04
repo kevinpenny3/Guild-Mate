@@ -7,5 +7,11 @@ namespace Guildmate.Models
 {
     public class Guild
     {
+        public int GuildId { get; set; }
+        public string Name { get; set; }
+        public int ServerId { get; set; }
+        public int FactionId { get; set; }
+        public string Banner { get; set; }
+
     }
 }

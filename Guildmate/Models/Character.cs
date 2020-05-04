@@ -7,5 +7,12 @@ namespace Guildmate.Models
 {
     public class Character
     {
+        public int CharacterId { get; set; }
+        public string Name { get; set; }
+        public int ClassId { get; set; }
+        public int RaceId { get; set; }
+        public int GuildId { get; set; }
+        public int FactionId { get; set; }
+        public int RankId { get; set; }
     }
 }

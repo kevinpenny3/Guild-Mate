@@ -1,11 +1,19 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Guildmate.Models
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+
+        }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        
     }
 }

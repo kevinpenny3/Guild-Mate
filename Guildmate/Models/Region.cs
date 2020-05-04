@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace Guildmate.Models
 {
-    public class Server
+    public class Region
     {
-        public int ServerId { get; set; }
+        public int RegionId { get; set; }
         public string Name { get; set; }
-        public string RegionId { get; set; }
     }
 }
