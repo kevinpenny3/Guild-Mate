@@ -33,18 +33,18 @@ namespace Guildmate.Data
             base.OnModelCreating(modelBuilder);
 
             ApplicationUser user = new ApplicationUser
-                {
-                    FirstName = "Admin",
-                    LastName = "Admin",
-                    UserName = "admin@admin.com",
-                    NormalizedUserName = "ADMIN@ADMIN.COM",
-                    Email = "admin@admin.com",
-                    NormalizedEmail = "ADMIN@ADMIN.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
-                    Id = "00000000-ffff-ffff-ffff-ffffffffffff"
-                };
+            {
+                FirstName = "Admin",
+                LastName = "Admin",
+                UserName = "admin@admin.com",
+                NormalizedUserName = "ADMIN@ADMIN.COM",
+                Email = "admin@admin.com",
+                NormalizedEmail = "ADMIN@ADMIN.COM",
+                EmailConfirmed = true,
+                LockoutEnabled = false,
+                SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
+                Id = "00000000-ffff-ffff-ffff-ffffffffffff"
+            };
             var passwordHash = new PasswordHasher<ApplicationUser>();
             user.PasswordHash = passwordHash.HashPassword(user, "Admin123!");
             modelBuilder.Entity<ApplicationUser>().HasData(user);
@@ -422,21 +422,6 @@ namespace Guildmate.Data
                 {
                     RegionId = 2,
                     Name = "US West"
-                },
-                new Region()
-                {
-                    RegionId = 3,
-                    Name = "Oceanic"
-                }
-                new Region()
-                {
-                    RegionId = 4,
-                    Name = "Latin America"
-                },
-                new Region()
-                {
-                    RegionId = 5,
-                    Name = "Brazil"
                 }
                 );
             modelBuilder.Entity<Rank>().HasData(
@@ -451,6 +436,370 @@ namespace Guildmate.Data
                     RankId = 2,
                     Name = "Member",
                     Permissions = false
+                }
+                );
+            modelBuilder.Entity<Character>().HasData(
+                new Character()
+                {
+                    CharacterId = 1,
+                    UserId = user.Id,
+                    Name = "Testtoon",
+                    RaceId = 1,
+                    ClassId = 9,
+                    GuildId = 1,
+                    FactionId = 1,
+                    RankId = 1
+                }
+                );
+            modelBuilder.Entity<Guild>().HasData(
+                new Guild()
+                {
+                    GuildId = 1,
+                    Name = "Test Guild",
+                    ServerId = 1,
+                    FactionId = 1,
+                    CharacterId = 1
+                }
+                );
+            modelBuilder.Entity<Server>().HasData(
+                new Server()
+                {
+                    ServerId = 1,
+                    Name = "Incendius",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 2,
+                    Name = "Faerlina",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 3,
+                    Name = "Bloodsail Buccaneers",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 4,
+                    Name = "Westfall",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 5,
+                    Name = "Deviate Delight",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 6,
+                    Name = "Benediction",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 7,
+                    Name = "Ashkandi",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 8,
+                    Name = "Heartseeker",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 9,
+                    Name = "Kirtonos",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 10,
+                    Name = "Skeram",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 11,
+                    Name = "Stalagg",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 12,
+                    Name = "Thalnos",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 13,
+                    Name = "Windseeker",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 14,
+                    Name = "Earthfury",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 15,
+                    Name = "Kromcrush",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 16,
+                    Name = "Mankrik",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 17,
+                    Name = "Netherwind",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 18,
+                    Name = "Herod",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 19,
+                    Name = "Pagle",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 20,
+                    Name = "Sulfuras",
+                    RegionId = 1
+                },
+                new Server()
+                {
+                    ServerId = 21,
+                    Name = "Kurinnaxx",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 22,
+                    Name = "Whitemane",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 23,
+                    Name = "Anathema",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 24,
+                    Name = "Arcanite Reaper",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 25,
+                    Name = "Azuresong",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 26,
+                    Name = "Myzrael",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 27,
+                    Name = "Old Blanchy",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 28,
+                    Name = "Smolderweb",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 29,
+                    Name = "Atiesh",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 30,
+                    Name = "Bigglesworth",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 31,
+                    Name = "Blaumeux",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 32,
+                    Name = "Rattlegore",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 33,
+                    Name = "Thunderfury",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 34,
+                    Name = "Fairbanks",
+                    RegionId = 2
+                },
+                new Server()
+                {
+                    ServerId = 35,
+                    Name = "Grobbulus",
+                    RegionId = 2
+                }
+                );
+            modelBuilder.Entity<Bank>().HasData(
+                new Bank()
+                {
+                    BankId = 1,
+                    CharacterId = 1,
+                    GuildId = 1,
+                    InventorySpace = 25
+                }
+                );
+            modelBuilder.Entity<Role>().HasData(
+                new Role()
+                {
+                    RoleId = 1,
+                    Name = "Tank",
+                },
+                new Role()
+                {
+                    RoleId = 2,
+                    Name = "DPS",
+                },
+                new Role()
+                {
+                    RoleId = 3,
+                    Name = "Healer",
+                }
+                );
+            modelBuilder.Entity<ItemType>().HasData(
+                new ItemType()
+                {
+                    ItemTypeId = 1,
+                    Name = "Herb"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 2,
+                    Name = "Cloth"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 3,
+                    Name = "Ore"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 4,
+                    Name = "Enchanting"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 5,
+                    Name = "Armor"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 7,
+                    Name = "Weapon"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 8,
+                    Name = "Misc"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 9,
+                    Name = "Food"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 10,
+                    Name = "Currency"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 11,
+                    Name = "Container"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 12,
+                    Name = "Crafting Material"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 13,
+                    Name = "Reputation"
+                },
+                new ItemType()
+                {
+                    ItemTypeId = 14,
+                    Name = "Crafted Item"
+                }
+                );
+            modelBuilder.Entity<Item>().HasData(
+                new Item()
+                {
+                    ItemId = 1,
+                    Name = "Linen Cloth",
+                    Quantity = 1,
+                    CharacterId = 1,
+                    ItemTypeId = 2
+                }
+                );
+            modelBuilder.Entity<BankItem>().HasData(
+                new BankItem()
+                {
+                    BankItemId = 1,
+                    BankId = 1,
+                    ItemId = 1
+                }
+                );
+            modelBuilder.Entity<Event>().HasData(
+                new Event()
+                {
+                    EventId = 1,
+                    Name = "Test Event",
+                    MaxAttendees = 40,
+                    GuildId = 1
+                }
+                );
+            modelBuilder.Entity<CharacterEvent>().HasData(
+                new CharacterEvent()
+                {
+                    CharacterEventId = 1,
+                    CharacterId = 1,
+                    EventId = 1,
+                    RoleId = 1
                 }
                 );
 
