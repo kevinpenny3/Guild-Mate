@@ -17,7 +17,7 @@ namespace Guildmate.Models
         public int ServerId { get; set; }
         public Server Server { get; set; }
 
-        public int FactionId { get; set; }
+        public int? FactionId { get; set; }
         public Faction Faction { get; set; }
 
         public string Banner { get; set; }

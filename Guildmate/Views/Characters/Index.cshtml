@@ -1,0 +1,46 @@
+﻿@model Guildmate.Models.Character
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Class)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Race)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Faction)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.Class.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.Race.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.Faction.Name)
+            </td>
+        </tr>
+    </tbody>
+</table>

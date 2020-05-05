@@ -18,14 +18,13 @@ namespace Guildmate.Models
 
         public int RaceId { get; set; }
         public Race Race { get; set; }
+        
+        public int GuildRankId { get; set; }
+        public GuildRank GuildRank { get; set; }
 
-        public int GuildId { get; set; }
-        public Guild Guild { get; set; }
 
-        public int FactionId { get; set; }
+        public int? FactionId { get; set; }
         public Faction Faction { get; set; }
 
-        public int RankId { get; set; }
-        public Rank Rank { get; set; }
     }
 }

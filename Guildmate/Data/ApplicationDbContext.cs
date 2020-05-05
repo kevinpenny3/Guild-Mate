@@ -446,9 +446,8 @@ namespace Guildmate.Data
                     Name = "Testtoon",
                     RaceId = 1,
                     ClassId = 9,
-                    GuildId = 1,
+                    GuildRankId = 1,
                     FactionId = 1,
-                    RankId = 1
                 }
                 );
             modelBuilder.Entity<Guild>().HasData(
