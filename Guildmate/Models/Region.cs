@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Guildmate.Models
 {
-    public class Class
+    public class Region
     {
         [Key]
-        public int ClassId { get; set; }
+        public int RegionId { get; set; }
         public string Name { get; set; }
-        public string Icon { get; set; }
-        public string Color { get; set; }
     }
 }
