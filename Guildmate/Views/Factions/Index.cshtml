@@ -25,9 +25,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Icon)
+                <img src="Images/@Html.DisplayFor(modelItem => item.Icon)" />
             </td>
         </tr>
+        <img src="~/Images/alliance.png" />
 }
     </tbody>
 </table>
