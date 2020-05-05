@@ -11,6 +11,8 @@ namespace Guildmate.Models
         [Key]
         public int RaceId { get; set; }
         public string Name { get; set; }
+
         public int FactionId { get; set; }
+        public Faction Faction { get; set; }
     }
 }

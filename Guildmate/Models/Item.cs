@@ -12,9 +12,13 @@ namespace Guildmate.Models
         public int ItemId { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
-        public int CharacterId { get; set; }
-        public int ItemTypeId { get; set; }
         public DateTime DateAdded { get; set; }
         public DateTime DateRemoved { get; set; }
+
+        public int CharacterId { get; set; }
+        public Character Character { get; set; }
+
+        public int ItemTypeId { get; set; }
+        public ItemType ItemType { get; set; }
     }
 }

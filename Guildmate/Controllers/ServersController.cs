@@ -2,17 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Guildmate.Data;
+using Guildmate.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Guildmate.Controllers
 {
     public class ServersController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public ServersController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         // GET: Servers
         public ActionResult Index()
         {
-            return View();
+            var servers = _context.Server
+                .Include(r => r.Region)
+                .ToList();
+
+            return View(servers);
         }
 
         // GET: Servers/Details/5
@@ -89,5 +103,6 @@ namespace Guildmate.Controllers
                 return View();
             }
         }
+        
     }
 }

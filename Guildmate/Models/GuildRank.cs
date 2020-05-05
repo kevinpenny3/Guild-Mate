@@ -10,7 +10,11 @@ namespace Guildmate.Models
     {
         [Key]
         public int GuildRankId { get; set; }
+
         public int GuildId { get; set; }
+        public Guild Guild { get; set; }
+
         public int RankId { get; set; }
+        public Rank Rank { get; set; }
     }
 }

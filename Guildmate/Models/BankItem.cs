@@ -10,7 +10,11 @@ namespace Guildmate.Models
     {
         [Key]
         public int BankItemId { get; set; }
+
         public int BankId { get; set; }
+        public Bank Bank { get; set; }
+
         public int ItemId { get; set; }
+        public Item Item { get; set; }
     }
 }
