@@ -196,6 +196,12 @@ namespace Guildmate.Data
                 },
                 new ClassRace()
                 {
+                    ClassRaceId = 5,
+                    RaceId = 4,
+                    ClassId = 3
+                },
+                new ClassRace()
+                {
                     ClassRaceId = 6,
                     RaceId = 1,
                     ClassId = 5
@@ -286,12 +292,6 @@ namespace Guildmate.Data
                 },
                 new ClassRace()
                 {
-                    ClassRaceId = 20,
-                    RaceId = 4,
-                    ClassId = 3
-                },
-                new ClassRace()
-                {
                     ClassRaceId = 21,
                     RaceId = 5,
                     ClassId = 9
@@ -304,109 +304,109 @@ namespace Guildmate.Data
                 },
                 new ClassRace()
                 {
-                    ClassRaceId = 22,
-                    RaceId = 5,
-                    ClassId = 5
-                },
-                new ClassRace()
-                {
                     ClassRaceId = 23,
                     RaceId = 5,
-                    ClassId = 3
+                    ClassId = 5
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 24,
                     RaceId = 5,
-                    ClassId = 8
+                    ClassId = 3
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 25,
-                    RaceId = 6,
-                    ClassId = 9
+                    RaceId = 5,
+                    ClassId = 8
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 26,
                     RaceId = 6,
-                    ClassId = 2
+                    ClassId = 9
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 27,
                     RaceId = 6,
-                    ClassId = 7
+                    ClassId = 2
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 28,
                     RaceId = 6,
-                    ClassId = 1
+                    ClassId = 7
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 29,
-                    RaceId = 7,
-                    ClassId = 2
+                    RaceId = 6,
+                    ClassId = 1
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 30,
                     RaceId = 7,
-                    ClassId = 9
+                    ClassId = 2
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 31,
                     RaceId = 7,
-                    ClassId = 6
+                    ClassId = 9
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 32,
                     RaceId = 7,
-                    ClassId = 7
+                    ClassId = 6
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 33,
                     RaceId = 7,
-                    ClassId = 8
+                    ClassId = 7
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 34,
-                    RaceId = 8,
-                    ClassId = 7
+                    RaceId = 7,
+                    ClassId = 8
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 35,
                     RaceId = 8,
-                    ClassId = 9
+                    ClassId = 7
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 36,
                     RaceId = 8,
-                    ClassId = 6
+                    ClassId = 9
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 37,
                     RaceId = 8,
-                    ClassId = 5
+                    ClassId = 6
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 38,
                     RaceId = 8,
-                    ClassId = 2
+                    ClassId = 5
                 },
                 new ClassRace()
                 {
                     ClassRaceId = 39,
+                    RaceId = 8,
+                    ClassId = 2
+                },
+                new ClassRace()
+                {
+                    ClassRaceId = 40,
                     RaceId = 8,
                     ClassId = 3
                 }
@@ -800,6 +800,20 @@ namespace Guildmate.Data
                     CharacterId = 1,
                     EventId = 1,
                     RoleId = 1
+                }
+                );
+            modelBuilder.Entity<GuildRank>().HasData(
+                new GuildRank()
+                {
+                    GuildRankId = 1,
+                    GuildId = 1,
+                    RankId = 1,
+                },
+                new GuildRank()
+                {
+                    GuildRankId = 2,
+                    GuildId = 1,
+                    RankId = 2,
                 }
                 );
 
