@@ -23,15 +23,24 @@ namespace Guildmate.Controllers
         }
         // GET: Servers
         [Route("Servers/{filter}")]
-        public async Task<ActionResult> Index(string filter)
+        public async Task<ActionResult> Index(string filter, string searchString)
         {
             var user = await GetUserAsync();
             var servers = await _context.Server
                 .Include(r => r.Region)
                 .ToListAsync();
 
-            
-                switch (filter)
+            if (searchString != null)
+            {
+                servers = await _context.Server
+                    .Where(s => s.Name.Contains(searchString))
+                    .Include(r => r.Region)
+                    .ToListAsync();
+
+                return View(servers);
+            }
+
+            switch (filter)
                 {
 
                     case "east":

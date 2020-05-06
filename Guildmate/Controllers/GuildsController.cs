@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Guildmate.Data;
+using Guildmate.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,25 +14,72 @@ namespace Guildmate.Controllers
     public class GuildsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public GuildsController(ApplicationDbContext context)
+        public GuildsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         // GET: Guilds
-        public ActionResult Index()
+        [Route("Guilds/{server}/{filter}")]
+        public async Task<ActionResult> Index(int server, string searchString, string filter)
         {
-            var guilds = _context.Guild
+            var user = await GetUserAsync();
+            var guilds = await _context.Guild
+                .Where(g => g.ServerId == server)
                 .Include(f => f.Faction)
                 .Include(s => s.Server)
-                .ToList();
+                .ToListAsync();
+
+
+            if (searchString != null)
+            {
+                guilds = await _context.Guild
+                    .Where(g => g.Name.Contains(searchString))
+                    .Include(f => f.Faction)
+                    .Include(s => s.Server)
+                    .ToListAsync();
+
+                return View(guilds);
+            }
+
+            switch (filter)
+            {
+
+                case "horde":
+                    guilds = await _context.Guild
+                        .Where(f => f.FactionId == 2)
+                        .Include(s => s.Server)
+                        .ToListAsync();
+                    break;
+                case "alliance":
+                    guilds = await _context.Guild
+                        .Where(f => f.FactionId == 1)
+                        .Include(s => s.Server)
+                        .ToListAsync();
+                    break;
+                case "all":
+                    guilds = await _context.Guild
+                        .Include(f => f.Faction)
+                        .Include(s => s.Server)
+                        .ToListAsync();
+                    break;
+            }
             return View(guilds);
         }
 
         // GET: Guilds/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var user = await GetUserAsync();
+            var CurrentUser = await _context.ApplicationUser.Include(c => c.Characters).FirstOrDefaultAsync(au => au.Id == user.Id);
+            var character = CurrentUser.Characters.First();
+            var guild = await _context.Guild.Include(s => s.Server).Include(f => f.Faction).Include(c => c.Characters).FirstOrDefaultAsync(g => g.GuildId == character.GuildId);
+
+           
+           
+            return View(guild);
         }
 
         // GET: Guilds/Create
@@ -101,5 +150,7 @@ namespace Guildmate.Controllers
                 return View();
             }
         }
+        private async Task<ApplicationUser> GetUserAsync() => await _userManager.GetUserAsync(HttpContext.User);
+
     }
 }
