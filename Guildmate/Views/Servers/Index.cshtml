@@ -5,9 +5,15 @@
 }
 
 <h1>Servers</h1>
+<form class="form-inline my-2 my-lg-0" asp-controller="Servers" asp-action="Index">
+    <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Server Name">
+    <button class="btn btn-secondary my-2 my-sm-0 compSearch" type="submit">Filter</button>
+</form>
+<hr/>
 @Html.ActionLink("US East", "Index", new { filter = "east" }, new { @class = "btn btn-primary" })
 @Html.ActionLink("US West", "Index", new { filter = "west" }, new { @class = "btn btn-primary" })
 @Html.ActionLink("Show All", "Index", new { filter = "all" }, new { @class = "btn btn-primary" })
+
 
 <table class="table">
     <thead>
@@ -17,6 +23,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Region)
+            </th>
+            <th>
+                Guilds
             </th>
             <th></th>
         </tr>
@@ -30,6 +39,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Region.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Guilds", "Index", "Guilds" , new { server = item.ServerId, filter = "all" }, new { @class = "btn btn-primary" })
                 </td>
             </tr>
         }

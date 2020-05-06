@@ -17,5 +17,7 @@ namespace Guildmate.Models
         [Required]
         public int RegionId { get; set; }
         public Region Region { get; set; }
+
+        public List<Guild> Guilds { get; set; }
     }
 }

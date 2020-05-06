@@ -4,11 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
+<h1>Guilds</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Guild</a>
 </p>
+
+<form class="form-inline my-2 my-lg-0" asp-controller="Guilds" asp-action="Index">
+    <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Server Name">
+    <button class="btn btn-secondary my-2 my-sm-0 compSearch" type="submit">Filter</button>
+</form>
+<hr />
+
+@Html.ActionLink("Horde Guilds", "Index", new { filter = "horde" }, new { @class = "btn btn-primary" })
+@Html.ActionLink("Alliance Guilds", "Index", new { filter = "alliance" }, new { @class = "btn btn-primary" })
+@Html.ActionLink("Show All guilds", "Index", new { filter = "all" }, new { @class = "btn btn-primary" })
+
 <table class="table">
     <thead>
         <tr>
@@ -28,26 +38,25 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Server.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Faction.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Banner)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.GuildId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.GuildId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.GuildId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Server.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Faction.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Banner)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.GuildId">Join Guild</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
