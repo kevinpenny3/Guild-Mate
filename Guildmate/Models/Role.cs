@@ -10,6 +10,8 @@ namespace Guildmate.Models
     {
         [Key]
         public int RoleId { get; set; }
+
+        [Required]
         public string Name { get; set; }
         public string Icon { get; set; }
     }

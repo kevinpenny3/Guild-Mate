@@ -10,7 +10,11 @@ namespace Guildmate.Models
     {
         [Key]
         public int RankId { get; set; }
+
+        [Required]
         public string Name { get; set; }
+
+        [Required]
         public bool Permissions { get; set; }
     }
 }

@@ -3,45 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Guildmate.Data;
-using Guildmate.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Guildmate.Controllers
 {
-    public class ServersController : Controller
+    public class FactionsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ServersController(ApplicationDbContext context)
+        public FactionsController(ApplicationDbContext context)
         {
             _context = context;
         }
-        // GET: Servers
+        // GET: Factions
         public ActionResult Index()
         {
-            var servers = _context.Server
-                .Include(r => r.Region)
-                .ToList();
-
-            return View(servers);
+            var factions = _context.Faction.ToList();
+            return View(factions);
         }
 
-        // GET: Servers/Details/5
+        // GET: Factions/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Servers/Create
+        // GET: Factions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Servers/Create
+        // POST: Factions/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -58,13 +52,13 @@ namespace Guildmate.Controllers
             }
         }
 
-        // GET: Servers/Edit/5
+        // GET: Factions/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Servers/Edit/5
+        // POST: Factions/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -81,13 +75,13 @@ namespace Guildmate.Controllers
             }
         }
 
-        // GET: Servers/Delete/5
+        // GET: Factions/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Servers/Delete/5
+        // POST: Factions/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
@@ -103,6 +97,5 @@ namespace Guildmate.Controllers
                 return View();
             }
         }
-        
     }
 }

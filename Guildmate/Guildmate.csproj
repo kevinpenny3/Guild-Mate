@@ -5,11 +5,39 @@
     <UserSecretsId>aspnet-Guildmate-83DE8038-945E-4C06-B643-C13945BC1509</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <Content Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200506160001_Initial.cs" />
+    <Compile Remove="Migrations\20200506160001_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200506160356_Initial.cs" />
+    <Compile Remove="Migrations\20200506160356_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200506160838_Initial.cs" />
+    <Compile Remove="Migrations\20200506160838_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200506161530_Initial.cs" />
+    <Compile Remove="Migrations\20200506161530_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200506161903_Initial.cs" />
+    <Compile Remove="Migrations\20200506161903_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200506162404_Initial.cs" />
+    <Compile Remove="Migrations\20200506162404_Initial.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\Alliance.png" />
+    <None Include="wwwroot\Images\Horde.png" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />

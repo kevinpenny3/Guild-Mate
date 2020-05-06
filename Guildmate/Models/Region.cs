@@ -10,6 +10,8 @@ namespace Guildmate.Models
     {
         [Key]
         public int RegionId { get; set; }
+
+        [Required]
         public string Name { get; set; }
     }
 }

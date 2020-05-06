@@ -7,41 +7,39 @@ using Guildmate.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Guildmate.Controllers
 {
-    public class ServersController : Controller
+    public class RolesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        
 
-        public ServersController(ApplicationDbContext context)
+        public RolesController(ApplicationDbContext context)
         {
             _context = context;
         }
-        // GET: Servers
+        // GET: Roles
         public ActionResult Index()
         {
-            var servers = _context.Server
-                .Include(r => r.Region)
+            var roles = _context.Role
                 .ToList();
-
-            return View(servers);
+            return View(roles);
         }
 
-        // GET: Servers/Details/5
+        // GET: Roles/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Servers/Create
+        // GET: Roles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Servers/Create
+        // POST: Roles/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -58,13 +56,13 @@ namespace Guildmate.Controllers
             }
         }
 
-        // GET: Servers/Edit/5
+        // GET: Roles/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Servers/Edit/5
+        // POST: Roles/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -81,13 +79,13 @@ namespace Guildmate.Controllers
             }
         }
 
-        // GET: Servers/Delete/5
+        // GET: Roles/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Servers/Delete/5
+        // POST: Roles/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
@@ -103,6 +101,6 @@ namespace Guildmate.Controllers
                 return View();
             }
         }
-        
+
     }
 }

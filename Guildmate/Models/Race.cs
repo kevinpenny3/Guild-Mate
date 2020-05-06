@@ -10,7 +10,14 @@ namespace Guildmate.Models
     {
         [Key]
         public int RaceId { get; set; }
+
+        [Required]
         public string Name { get; set; }
+
+        [Required]
         public int FactionId { get; set; }
+        public Faction Faction { get; set; }
+
+        public List<ClassRace> ClassRaces { get; set; }
     }
 }

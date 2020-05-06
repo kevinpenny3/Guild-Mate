@@ -11,37 +11,42 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Guildmate.Controllers
 {
-    public class ServersController : Controller
+    public class CharactersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ServersController(ApplicationDbContext context)
+        public CharactersController(ApplicationDbContext context, UserManager<ApplicationUser> usermanager)
         {
             _context = context;
+            _userManager = usermanager;
         }
-        // GET: Servers
-        public ActionResult Index()
+        // GET: Characters
+        public async Task<ActionResult> Index()
         {
-            var servers = _context.Server
-                .Include(r => r.Region)
-                .ToList();
-
-            return View(servers);
+            var user = await GetCurrentUserAsync();
+            var characters = await _context.Character
+                .Include(cr => cr.ClassRace)
+                //.ThenInclude(r => r.Race)
+                //.ThenInclude(c => c.Class)
+                
+                .FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+            return View(characters);
         }
 
-        // GET: Servers/Details/5
+        // GET: Characters/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Servers/Create
+        // GET: Characters/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Servers/Create
+        // POST: Characters/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -58,13 +63,13 @@ namespace Guildmate.Controllers
             }
         }
 
-        // GET: Servers/Edit/5
+        // GET: Characters/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Servers/Edit/5
+        // POST: Characters/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -81,13 +86,13 @@ namespace Guildmate.Controllers
             }
         }
 
-        // GET: Servers/Delete/5
+        // GET: Characters/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Servers/Delete/5
+        // POST: Characters/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
@@ -103,6 +108,6 @@ namespace Guildmate.Controllers
                 return View();
             }
         }
-        
+        private async Task<ApplicationUser> GetCurrentUserAsync() => await _userManager.GetUserAsync(HttpContext.User);
     }
 }
