@@ -10,6 +10,8 @@ namespace Guildmate.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public List<Character> Characters { get; set; }
         
     }
 }

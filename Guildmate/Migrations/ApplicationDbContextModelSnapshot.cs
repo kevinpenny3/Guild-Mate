@@ -94,7 +94,7 @@ namespace Guildmate.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "79e23d94-3820-4aa4-a3fd-9272abc703d1",
+                            ConcurrencyStamp = "953c627f-02a4-4f57-810c-785e1e774b91",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -102,45 +102,11 @@ namespace Guildmate.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDploThuoW3xpZyzWKvwUI8Lx2hnuGUqLYq1vrmd6OG9jFtiybtQCNa5jbE2KVur8w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJvA6s+gpEGVkL2/hL479fm8U3RW7Vmj6dySEKZp7eRNAQ+yO2viH4ushBpuGC+g7Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
-                        });
-                });
-
-            modelBuilder.Entity("Guildmate.Models.Bank", b =>
-                {
-                    b.Property<int>("BankId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CharacterId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GuildId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InventorySpace")
-                        .HasColumnType("int");
-
-                    b.HasKey("BankId");
-
-                    b.HasIndex("CharacterId");
-
-                    b.HasIndex("GuildId");
-
-                    b.ToTable("Bank");
-
-                    b.HasData(
-                        new
-                        {
-                            BankId = 1,
-                            CharacterId = 1,
-                            GuildId = 1,
-                            InventorySpace = 25
                         });
                 });
 
@@ -151,7 +117,10 @@ namespace Guildmate.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BankId")
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GuildId")
                         .HasColumnType("int");
 
                     b.Property<int>("ItemId")
@@ -159,7 +128,9 @@ namespace Guildmate.Migrations
 
                     b.HasKey("BankItemId");
 
-                    b.HasIndex("BankId");
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("GuildId");
 
                     b.HasIndex("ItemId");
 
@@ -169,7 +140,7 @@ namespace Guildmate.Migrations
                         new
                         {
                             BankItemId = 1,
-                            BankId = 1,
+                            CharacterId = 1,
                             ItemId = 1
                         });
                 });
@@ -181,33 +152,34 @@ namespace Guildmate.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClassId")
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ClassRaceId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FactionId")
+                    b.Property<int?>("GuildId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GuildRankId")
+                    b.Property<int?>("InventorySpace")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RaceId")
+                    b.Property<int?>("RankId")
                         .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CharacterId");
 
-                    b.HasIndex("ClassId");
+                    b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("FactionId");
+                    b.HasIndex("ClassRaceId");
 
-                    b.HasIndex("GuildRankId");
+                    b.HasIndex("GuildId");
 
-                    b.HasIndex("RaceId");
+                    b.HasIndex("RankId");
 
                     b.ToTable("Character");
 
@@ -215,12 +187,11 @@ namespace Guildmate.Migrations
                         new
                         {
                             CharacterId = 1,
-                            ClassId = 9,
-                            FactionId = 1,
-                            GuildRankId = 1,
+                            ApplicationUserId = "00000000-ffff-ffff-ffff-ffffffffffff",
+                            ClassRaceId = 1,
+                            GuildId = 1,
                             Name = "Testtoon",
-                            RaceId = 1,
-                            UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
+                            RankId = 1
                         });
                 });
 
@@ -231,7 +202,7 @@ namespace Guildmate.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CharacterId")
+                    b.Property<int?>("CharacterId")
                         .HasColumnType("int");
 
                     b.Property<int>("EventId")
@@ -274,6 +245,7 @@ namespace Guildmate.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ClassId");
@@ -608,7 +580,7 @@ namespace Guildmate.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GuildId")
@@ -618,6 +590,7 @@ namespace Guildmate.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")
@@ -633,7 +606,6 @@ namespace Guildmate.Migrations
                         new
                         {
                             EventId = 1,
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GuildId = 1,
                             MaxAttendees = 40,
                             Name = "Test Event",
@@ -652,6 +624,7 @@ namespace Guildmate.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FactionId");
@@ -681,13 +654,11 @@ namespace Guildmate.Migrations
                     b.Property<string>("Banner")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CharacterId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FactionId")
+                    b.Property<int>("FactionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ServerId")
@@ -705,46 +676,9 @@ namespace Guildmate.Migrations
                         new
                         {
                             GuildId = 1,
-                            CharacterId = 1,
                             FactionId = 1,
                             Name = "Test Guild",
                             ServerId = 1
-                        });
-                });
-
-            modelBuilder.Entity("Guildmate.Models.GuildRank", b =>
-                {
-                    b.Property<int>("GuildRankId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("GuildId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RankId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GuildRankId");
-
-                    b.HasIndex("GuildId");
-
-                    b.HasIndex("RankId");
-
-                    b.ToTable("GuildRank");
-
-                    b.HasData(
-                        new
-                        {
-                            GuildRankId = 1,
-                            GuildId = 1,
-                            RankId = 1
-                        },
-                        new
-                        {
-                            GuildRankId = 2,
-                            GuildId = 1,
-                            RankId = 2
                         });
                 });
 
@@ -755,19 +689,20 @@ namespace Guildmate.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CharacterId")
+                    b.Property<int?>("CharacterId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateRemoved")
+                    b.Property<DateTime?>("DateRemoved")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ItemTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
@@ -785,9 +720,7 @@ namespace Guildmate.Migrations
                         new
                         {
                             ItemId = 1,
-                            CharacterId = 1,
                             DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateRemoved = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ItemTypeId = 2,
                             Name = "Linen Cloth",
                             Quantity = 1
@@ -805,6 +738,7 @@ namespace Guildmate.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ItemTypeId");
@@ -890,6 +824,7 @@ namespace Guildmate.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RaceId");
@@ -957,6 +892,7 @@ namespace Guildmate.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Permissions")
@@ -989,6 +925,7 @@ namespace Guildmate.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RegionId");
@@ -1015,13 +952,19 @@ namespace Guildmate.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CharacterEventId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoleId");
+
+                    b.HasIndex("CharacterEventId");
 
                     b.ToTable("Role");
 
@@ -1051,6 +994,7 @@ namespace Guildmate.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RegionId")
@@ -1410,31 +1354,20 @@ namespace Guildmate.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Guildmate.Models.Bank", b =>
+            modelBuilder.Entity("Guildmate.Models.BankItem", b =>
                 {
                     b.HasOne("Guildmate.Models.Character", "Character")
-                        .WithMany()
+                        .WithMany("BankItems")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Guildmate.Models.Guild", "Guild")
-                        .WithMany()
-                        .HasForeignKey("GuildId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Guildmate.Models.BankItem", b =>
-                {
-                    b.HasOne("Guildmate.Models.Bank", "Bank")
-                        .WithMany()
-                        .HasForeignKey("BankId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Guildmate.Models.Guild", null)
+                        .WithMany("BankItems")
+                        .HasForeignKey("GuildId");
 
                     b.HasOne("Guildmate.Models.Item", "Item")
-                        .WithMany()
+                        .WithMany("BankItems")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1442,39 +1375,33 @@ namespace Guildmate.Migrations
 
             modelBuilder.Entity("Guildmate.Models.Character", b =>
                 {
-                    b.HasOne("Guildmate.Models.Class", "Class")
+                    b.HasOne("Guildmate.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Characters")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Guildmate.Models.ClassRace", "ClassRace")
                         .WithMany()
-                        .HasForeignKey("ClassId")
+                        .HasForeignKey("ClassRaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Guildmate.Models.Faction", "Faction")
-                        .WithMany()
-                        .HasForeignKey("FactionId");
+                    b.HasOne("Guildmate.Models.Guild", "Guild")
+                        .WithMany("Characters")
+                        .HasForeignKey("GuildId");
 
-                    b.HasOne("Guildmate.Models.GuildRank", "GuildRank")
+                    b.HasOne("Guildmate.Models.Rank", "Rank")
                         .WithMany()
-                        .HasForeignKey("GuildRankId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Guildmate.Models.Race", "Race")
-                        .WithMany()
-                        .HasForeignKey("RaceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RankId");
                 });
 
             modelBuilder.Entity("Guildmate.Models.CharacterEvent", b =>
                 {
                     b.HasOne("Guildmate.Models.Character", "Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("CharacterEvents")
+                        .HasForeignKey("CharacterId");
 
                     b.HasOne("Guildmate.Models.Event", "Event")
-                        .WithMany()
+                        .WithMany("CharacterEvents")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1489,13 +1416,13 @@ namespace Guildmate.Migrations
             modelBuilder.Entity("Guildmate.Models.ClassRace", b =>
                 {
                     b.HasOne("Guildmate.Models.Class", "Class")
-                        .WithMany()
+                        .WithMany("ClassRaces")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Guildmate.Models.Race", "Race")
-                        .WithMany()
+                        .WithMany("ClassRaces")
                         .HasForeignKey("RaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1504,7 +1431,7 @@ namespace Guildmate.Migrations
             modelBuilder.Entity("Guildmate.Models.Event", b =>
                 {
                     b.HasOne("Guildmate.Models.Guild", "Guild")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1513,8 +1440,10 @@ namespace Guildmate.Migrations
             modelBuilder.Entity("Guildmate.Models.Guild", b =>
                 {
                     b.HasOne("Guildmate.Models.Faction", "Faction")
-                        .WithMany()
-                        .HasForeignKey("FactionId");
+                        .WithMany("Guilds")
+                        .HasForeignKey("FactionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Guildmate.Models.Server", "Server")
                         .WithMany()
@@ -1523,28 +1452,11 @@ namespace Guildmate.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Guildmate.Models.GuildRank", b =>
-                {
-                    b.HasOne("Guildmate.Models.Guild", "Guild")
-                        .WithMany()
-                        .HasForeignKey("GuildId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Guildmate.Models.Rank", "Rank")
-                        .WithMany()
-                        .HasForeignKey("RankId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Guildmate.Models.Item", b =>
                 {
-                    b.HasOne("Guildmate.Models.Character", "Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Guildmate.Models.Character", null)
+                        .WithMany("Items")
+                        .HasForeignKey("CharacterId");
 
                     b.HasOne("Guildmate.Models.ItemType", "ItemType")
                         .WithMany()
@@ -1560,6 +1472,13 @@ namespace Guildmate.Migrations
                         .HasForeignKey("FactionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Guildmate.Models.Role", b =>
+                {
+                    b.HasOne("Guildmate.Models.CharacterEvent", null)
+                        .WithMany("Roles")
+                        .HasForeignKey("CharacterEventId");
                 });
 
             modelBuilder.Entity("Guildmate.Models.Server", b =>

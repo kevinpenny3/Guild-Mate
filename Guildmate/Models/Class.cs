@@ -10,8 +10,13 @@ namespace Guildmate.Models
     {
         [Key]
         public int ClassId { get; set; }
+
+        [Required]
         public string Name { get; set; }
+
         public string Icon { get; set; }
         public string Color { get; set; }
+
+        public List<ClassRace> ClassRaces { get; set; }
     }
 }

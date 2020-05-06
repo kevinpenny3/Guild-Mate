@@ -10,17 +10,25 @@ namespace Guildmate.Models
     {
         [Key]
         public int GuildId { get; set; }
+
+
+        [Required]
         public string Name { get; set; }
 
-        public int CharacterId { get; set; }
-
+        [Required]
         public int ServerId { get; set; }
         public Server Server { get; set; }
 
-        public int? FactionId { get; set; }
+        [Required]
+        public int FactionId { get; set; }
         public Faction Faction { get; set; }
 
         public string Banner { get; set; }
+
+
+        public List<Character> Characters { get; set; }
+        public List<Event> Events { get; set; }
+        public List<BankItem> BankItems { get; set; }
 
     }
 }

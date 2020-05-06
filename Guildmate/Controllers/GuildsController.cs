@@ -3,50 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Guildmate.Data;
-using Guildmate.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Guildmate.Controllers
 {
-    public class CharactersController : Controller
+    public class GuildsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CharactersController(ApplicationDbContext context, UserManager<ApplicationUser> usermanager)
+        public GuildsController(ApplicationDbContext context)
         {
             _context = context;
-            _userManager = usermanager;
         }
-        // GET: Characters
-        public async Task<ActionResult> Index()
+        // GET: Guilds
+        public ActionResult Index()
         {
-            var user = await GetCurrentUserAsync();
-            var characters = await _context.Character
-                .Include(cr => cr.ClassRace)
-                //.ThenInclude(r => r.Race)
-                //.ThenInclude(c => c.Class)
-                
-                .FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
-            return View(characters);
+            var guilds = _context.Guild
+                .Include(f => f.Faction)
+                .Include(s => s.Server)
+                .ToList();
+            return View(guilds);
         }
 
-        // GET: Characters/Details/5
+        // GET: Guilds/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Characters/Create
+        // GET: Guilds/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Characters/Create
+        // POST: Guilds/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -63,13 +56,13 @@ namespace Guildmate.Controllers
             }
         }
 
-        // GET: Characters/Edit/5
+        // GET: Guilds/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Characters/Edit/5
+        // POST: Guilds/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -86,13 +79,13 @@ namespace Guildmate.Controllers
             }
         }
 
-        // GET: Characters/Delete/5
+        // GET: Guilds/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Characters/Delete/5
+        // POST: Guilds/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
@@ -108,6 +101,5 @@ namespace Guildmate.Controllers
                 return View();
             }
         }
-        private async Task<ApplicationUser> GetCurrentUserAsync() => await _userManager.GetUserAsync(HttpContext.User);
     }
 }

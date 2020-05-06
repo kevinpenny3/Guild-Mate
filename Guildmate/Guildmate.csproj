@@ -13,8 +13,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200505201647_Faction-Nullable.cs" />
-    <Compile Remove="Migrations\20200505201647_Faction-Nullable.Designer.cs" />
+    <Compile Remove="Migrations\20200506160001_Initial.cs" />
+    <Compile Remove="Migrations\20200506160001_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200506160356_Initial.cs" />
+    <Compile Remove="Migrations\20200506160356_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200506160838_Initial.cs" />
+    <Compile Remove="Migrations\20200506160838_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200506161530_Initial.cs" />
+    <Compile Remove="Migrations\20200506161530_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200506161903_Initial.cs" />
+    <Compile Remove="Migrations\20200506161903_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200506162404_Initial.cs" />
+    <Compile Remove="Migrations\20200506162404_Initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

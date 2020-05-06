@@ -10,7 +10,12 @@ namespace Guildmate.Models
     {
         [Key]
         public int FactionId { get; set; }
+
+        [Required]
         public string Name { get; set; }
+
         public string Icon { get; set; }
+
+        public List<Guild> Guilds { get; set; }
     }
 }

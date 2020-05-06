@@ -12,7 +12,6 @@ namespace Guildmate.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
-        public DbSet<Bank> Bank { get; set; }
         public DbSet<BankItem> BankItem { get; set; }
         public DbSet<Character> Character { get; set; }
         public DbSet<CharacterEvent> CharacterEvent { get; set; }
@@ -21,7 +20,6 @@ namespace Guildmate.Data
         public DbSet<Event> Event { get; set; }
         public DbSet<Faction> Faction { get; set; }
         public DbSet<Guild> Guild { get; set; }
-        public DbSet<GuildRank> GuildRank { get; set; }
         public DbSet<Item> Item { get; set; }
         public DbSet<ItemType> ItemType { get; set; }
         public DbSet<Race> Race { get; set; }
@@ -31,6 +29,10 @@ namespace Guildmate.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Character>()
+            //    .HasMany(gr => gr.GuildRank)
+            //    .WithOne(f => f.Faction)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             ApplicationUser user = new ApplicationUser
             {
@@ -442,12 +444,12 @@ namespace Guildmate.Data
                 new Character()
                 {
                     CharacterId = 1,
-                    UserId = user.Id,
+                    ApplicationUserId = user.Id,
                     Name = "Testtoon",
-                    RaceId = 1,
-                    ClassId = 9,
-                    GuildRankId = 1,
-                    FactionId = 1,
+                    ClassRaceId = 1,
+                    GuildId = 1,
+                    RankId = 1,
+                 
                 }
                 );
             modelBuilder.Entity<Guild>().HasData(
@@ -456,8 +458,7 @@ namespace Guildmate.Data
                     GuildId = 1,
                     Name = "Test Guild",
                     ServerId = 1,
-                    FactionId = 1,
-                    CharacterId = 1
+                    FactionId = 1
                 }
                 );
             modelBuilder.Entity<Server>().HasData(
@@ -672,15 +673,6 @@ namespace Guildmate.Data
                     RegionId = 2
                 }
                 );
-            modelBuilder.Entity<Bank>().HasData(
-                new Bank()
-                {
-                    BankId = 1,
-                    CharacterId = 1,
-                    GuildId = 1,
-                    InventorySpace = 25
-                }
-                );
             modelBuilder.Entity<Role>().HasData(
                 new Role()
                 {
@@ -771,7 +763,6 @@ namespace Guildmate.Data
                     ItemId = 1,
                     Name = "Linen Cloth",
                     Quantity = 1,
-                    CharacterId = 1,
                     ItemTypeId = 2
                 }
                 );
@@ -779,7 +770,7 @@ namespace Guildmate.Data
                 new BankItem()
                 {
                     BankItemId = 1,
-                    BankId = 1,
+                    CharacterId = 1,
                     ItemId = 1
                 }
                 );
@@ -801,20 +792,8 @@ namespace Guildmate.Data
                     RoleId = 1
                 }
                 );
-            modelBuilder.Entity<GuildRank>().HasData(
-                new GuildRank()
-                {
-                    GuildRankId = 1,
-                    GuildId = 1,
-                    RankId = 1,
-                },
-                new GuildRank()
-                {
-                    GuildRankId = 2,
-                    GuildId = 1,
-                    RankId = 2,
-                }
-                );
+           
+             
 
 
 

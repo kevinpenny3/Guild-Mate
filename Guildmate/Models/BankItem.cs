@@ -11,9 +11,11 @@ namespace Guildmate.Models
         [Key]
         public int BankItemId { get; set; }
 
-        public int BankId { get; set; }
-        public Bank Bank { get; set; }
+        [Required]
+        public int CharacterId { get; set; }
+        public Character Character { get; set; }
 
+        [Required]
         public int ItemId { get; set; }
         public Item Item { get; set; }
     }

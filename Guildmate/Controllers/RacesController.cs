@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Guildmate.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Guildmate.Controllers
 {
@@ -20,6 +21,7 @@ namespace Guildmate.Controllers
         public ActionResult Index()
         {
             var races = _context.Race
+                .Include(f => f.Faction)
                 .ToList();
             return View(races);
         }

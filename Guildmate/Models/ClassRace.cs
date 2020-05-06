@@ -11,9 +11,11 @@ namespace Guildmate.Models
         [Key]
         public int ClassRaceId { get; set; }
 
+        [Required]
         public int ClassId { get; set; }
         public Class Class { get; set; }
 
+        [Required]
         public int RaceId { get; set; }
         public Race Race { get; set; }
     }

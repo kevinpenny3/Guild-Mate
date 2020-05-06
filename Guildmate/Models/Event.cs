@@ -10,12 +10,21 @@ namespace Guildmate.Models
     {
         [Key]
         public int EventId { get; set; }
+
+        [Required]
         public string Name { get; set; }
+
+        [Required]
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
+
+        [Required]
         public int MaxAttendees { get; set; }
 
+        [Required]
         public int GuildId { get; set; }
         public Guild Guild { get; set; }
+
+        public List<CharacterEvent> CharacterEvents { get; set; }
     }
 }
