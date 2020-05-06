@@ -91,7 +91,7 @@ namespace Guildmate.Migrations
                 column: "FactionId",
                 principalTable: "Faction",
                 principalColumn: "FactionId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Guild_Faction_FactionId",
@@ -99,7 +99,7 @@ namespace Guildmate.Migrations
                 column: "FactionId",
                 principalTable: "Faction",
                 principalColumn: "FactionId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
     }
 }
