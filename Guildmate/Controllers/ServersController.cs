@@ -14,19 +14,45 @@ namespace Guildmate.Controllers
     public class ServersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ServersController(ApplicationDbContext context)
+        public ServersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         // GET: Servers
-        public ActionResult Index()
+        [Route("Servers/{filter}")]
+        public async Task<ActionResult> Index(string filter)
         {
-            var servers = _context.Server
+            var user = await GetUserAsync();
+            var servers = await _context.Server
                 .Include(r => r.Region)
-                .ToList();
+                .ToListAsync();
 
-            return View(servers);
+            
+                switch (filter)
+                {
+
+                    case "east":
+                        servers = await _context.Server
+                            .Where(r => r.RegionId == 1)
+                            .ToListAsync();
+                        break;
+                    case "west":
+                        servers = await _context.Server
+                            .Where(r => r.RegionId == 2)
+                            .ToListAsync();
+                        break;
+                    case "all":
+                        servers = await _context.Server
+                            .Include(r => r.Region)
+                            .ToListAsync();
+                        break;
+                }
+            
+
+                    return View(servers);
         }
 
         // GET: Servers/Details/5
@@ -103,6 +129,7 @@ namespace Guildmate.Controllers
                 return View();
             }
         }
-        
+        private async Task<ApplicationUser> GetUserAsync() => await _userManager.GetUserAsync(HttpContext.User);
+
     }
 }
