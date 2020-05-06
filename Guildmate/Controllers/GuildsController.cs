@@ -70,9 +70,16 @@ namespace Guildmate.Controllers
         }
 
         // GET: Guilds/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var user = await GetUserAsync();
+            var CurrentUser = await _context.ApplicationUser.Include(c => c.Characters).FirstOrDefaultAsync(au => au.Id == user.Id);
+            var character = CurrentUser.Characters.First();
+            var guild = await _context.Guild.Include(s => s.Server).Include(f => f.Faction).Include(c => c.Characters).FirstOrDefaultAsync(g => g.GuildId == character.GuildId);
+
+           
+           
+            return View(guild);
         }
 
         // GET: Guilds/Create
