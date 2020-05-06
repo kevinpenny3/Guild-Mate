@@ -5,6 +5,9 @@
 }
 
 <h1>Servers</h1>
+@Html.ActionLink("US East", "Index", new { filter = "east" }, new { @class = "btn btn-primary" })
+@Html.ActionLink("US West", "Index", new { filter = "west" }, new { @class = "btn btn-primary" })
+@Html.ActionLink("Show All", "Index", new { filter = "all" }, new { @class = "btn btn-primary" })
 
 <table class="table">
     <thead>
@@ -19,15 +22,16 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Region.Name)
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Region.Name)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Guildmate.Data;
 using Guildmate.Models;
+using Guildmate.Models.ViewModels.CharacterViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Guildmate.Controllers
@@ -27,9 +29,11 @@ namespace Guildmate.Controllers
             var user = await GetCurrentUserAsync();
             var characters = await _context.Character
                 .Include(cr => cr.ClassRace)
-                //.ThenInclude(r => r.Race)
-                //.ThenInclude(c => c.Class)
-                
+                .ThenInclude(c => c.Class)
+                .Include(cr => cr.ClassRace)
+                .ThenInclude(r => r.Race)
+                    .ThenInclude(f => f.Faction)
+                .Include(g => g.Guild)
                 .FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
             return View(characters);
         }
@@ -43,6 +47,7 @@ namespace Guildmate.Controllers
         // GET: Characters/Create
         public ActionResult Create()
         {
+           
             return View();
         }
 
