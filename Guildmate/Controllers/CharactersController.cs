@@ -58,15 +58,52 @@ namespace Guildmate.Controllers
                 .Where(f => f.FactionId == 2)
                 .Select(r => new SelectListItem() { Text = r.Name, Value = r.RaceId.ToString() })
                 .ToListAsync();
-            var classes = await _context.Class
-                .Select(c => new SelectListItem() { Text = c.Name, Value = c.ClassId.ToString() })
+            var humanClasses = await _context.ClassRace
+                .Where(cr => cr.RaceId == 1)
+                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
                 .ToListAsync();
+            var dwarfClasses = await _context.ClassRace
+                .Where(cr => cr.RaceId == 2)
+                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+                .ToListAsync();
+            var nightElfClasses = await _context.ClassRace
+                .Where(cr => cr.RaceId == 3)
+                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+                .ToListAsync();
+            var gnomeClasses = await _context.ClassRace
+                .Where(cr => cr.RaceId == 4)
+                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+                .ToListAsync();
+            var undeadClasses = await _context.ClassRace
+                .Where(cr => cr.RaceId == 5)
+                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+                .ToListAsync();
+            var taurenClasses = await _context.ClassRace
+                .Where(cr => cr.RaceId == 6)
+                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+                .ToListAsync();
+            var orcClasses = await _context.ClassRace
+                .Where(cr => cr.RaceId == 7)
+                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+                .ToListAsync();
+            var trollClasses = await _context.ClassRace
+                .Where(cr => cr.RaceId == 8)
+                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+                .ToListAsync();
+
 
             var viewModel = new CharacterCreateViewModel();
             viewModel.FactionOptions = factions;
             viewModel.AllianceRaceOptions = allianceRaces;
             viewModel.HordeRaceOptions = hordeRaces;
-            viewModel.ClassOptions = classes;
+            viewModel.HumanOptions = humanClasses;
+            viewModel.DwarfOptions = dwarfClasses;
+            viewModel.NightElfOptions = nightElfClasses;
+            viewModel.GnomeOptions = gnomeClasses;
+            viewModel.UndeadOptions = undeadClasses;
+            viewModel.TaurenOptions = taurenClasses;
+            viewModel.OrcOptions = orcClasses;
+            viewModel.TrollOptions = trollClasses;
 
             return View(viewModel);
         }

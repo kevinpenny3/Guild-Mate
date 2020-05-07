@@ -41,7 +41,15 @@ namespace Guildmate.Models.ViewModels.CharacterViewModels
         public List<SelectListItem> FactionOptions { get; set; }
         public List<SelectListItem> AllianceRaceOptions { get; set; }
         public List<SelectListItem> HordeRaceOptions { get; set; }
-        public List<SelectListItem> ClassOptions { get; set; }
+        public List<SelectListItem> HumanOptions { get; set; }
+        public List<SelectListItem> DwarfOptions { get; set; }
+        public List<SelectListItem> NightElfOptions { get; set; }
+        public List<SelectListItem> GnomeOptions { get; set; }
+        public List<SelectListItem> UndeadOptions { get; set; }
+        public List<SelectListItem> TaurenOptions { get; set; }
+        public List<SelectListItem> OrcOptions { get; set; }
+        public List<SelectListItem> TrollOptions { get; set; }
+
     }
 
 }
