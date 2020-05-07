@@ -22,6 +22,9 @@ namespace Guildmate.Models.ViewModels.CharacterViewModels
         public int ClassRaceId { get; set; }
         public ClassRace ClassRace { get; set; }
 
+        public int FactionId { get; set; }
+        public Faction Faction { get; set; }
+
         public int? GuildId { get; set; }
         public Guild Guild { get; set; }
 
@@ -36,7 +39,8 @@ namespace Guildmate.Models.ViewModels.CharacterViewModels
         public List<Item> Items { get; set; }
 
         public List<SelectListItem> FactionOptions { get; set; }
-        public List<SelectListItem> RaceOptions { get; set; }
+        public List<SelectListItem> AllianceRaceOptions { get; set; }
+        public List<SelectListItem> HordeRaceOptions { get; set; }
         public List<SelectListItem> ClassOptions { get; set; }
     }
 

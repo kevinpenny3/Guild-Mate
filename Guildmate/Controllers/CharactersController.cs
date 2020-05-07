@@ -50,7 +50,12 @@ namespace Guildmate.Controllers
             var factions = await _context.Faction
                 .Select(f => new SelectListItem() { Text = f.Name, Value = f.FactionId.ToString() })
                 .ToListAsync();
-            var races = await _context.Race
+            var allianceRaces = await _context.Race
+                .Where(f => f.FactionId == 1)
+                .Select(r => new SelectListItem() { Text = r.Name, Value = r.RaceId.ToString() })
+                .ToListAsync();
+            var hordeRaces = await _context.Race
+                .Where(f => f.FactionId == 2)
                 .Select(r => new SelectListItem() { Text = r.Name, Value = r.RaceId.ToString() })
                 .ToListAsync();
             var classes = await _context.Class
@@ -59,7 +64,8 @@ namespace Guildmate.Controllers
 
             var viewModel = new CharacterCreateViewModel();
             viewModel.FactionOptions = factions;
-            viewModel.RaceOptions = races;
+            viewModel.AllianceRaceOptions = allianceRaces;
+            viewModel.HordeRaceOptions = hordeRaces;
             viewModel.ClassOptions = classes;
 
             return View(viewModel);

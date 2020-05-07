@@ -118,6 +118,18 @@ namespace Guildmate.Controllers
                 };
 
                 _context.Guild.Add(guild);
+
+                var CurrentUser = await _context.ApplicationUser.Include(c => c.Characters).FirstOrDefaultAsync(au => au.Id == user.Id);
+                var userCharacter = CurrentUser.Characters.First();
+
+                var character = new Character
+                {
+                    CharacterId = userCharacter.CharacterId,
+                    GuildId = guild.GuildId,
+                    RankId = 1
+                };
+
+                _context.Character.Update(character);
                 await _context.SaveChangesAsync();
                 // TODO: Add insert logic here
 
