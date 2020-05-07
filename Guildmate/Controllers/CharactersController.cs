@@ -45,26 +45,52 @@ namespace Guildmate.Controllers
         }
 
         // GET: Characters/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-           
-            return View();
+            var factions = await _context.Faction
+                .Select(f => new SelectListItem() { Text = f.Name, Value = f.FactionId.ToString() })
+                .ToListAsync();
+            var races = await _context.Race
+                .Select(r => new SelectListItem() { Text = r.Name, Value = r.RaceId.ToString() })
+                .ToListAsync();
+            var classes = await _context.Class
+                .Select(c => new SelectListItem() { Text = c.Name, Value = c.ClassId.ToString() })
+                .ToListAsync();
+
+            var viewModel = new CharacterCreateViewModel();
+            viewModel.FactionOptions = factions;
+            viewModel.RaceOptions = races;
+            viewModel.ClassOptions = classes;
+
+            return View(viewModel);
         }
 
         // POST: Characters/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(CharacterCreateViewModel characterCreateViewModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                var user = await GetCurrentUserAsync();
+
+                var character = new Character
+                {
+                    Name = characterCreateViewModel.Name,
+                    ClassRace = characterCreateViewModel.ClassRace,
+                    GuildId = characterCreateViewModel.GuildId,
+                    RankId = characterCreateViewModel.RankId,
+                    InventorySpace = characterCreateViewModel.InventorySpace,
+                };
+
+                _context.Character.Add(character);
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                return View(characterCreateViewModel);
             }
         }
 

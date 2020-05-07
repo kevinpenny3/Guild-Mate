@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Guildmate.Data;
 using Guildmate.Models;
+using Guildmate.Models.ViewModels.GuildViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Guildmate.Controllers
@@ -25,7 +27,7 @@ namespace Guildmate.Controllers
         [Route("Guilds/{server}/{filter}")]
         public async Task<ActionResult> Index(int server, string searchString, string filter)
         {
-            var user = await GetUserAsync();
+            var user = await GetCurrentUserAsync();
             var guilds = await _context.Guild
                 .Where(g => g.ServerId == server)
                 .Include(f => f.Faction)
@@ -72,7 +74,7 @@ namespace Guildmate.Controllers
         // GET: Guilds/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var user = await GetUserAsync();
+            var user = await GetCurrentUserAsync();
             var CurrentUser = await _context.ApplicationUser.Include(c => c.Characters).FirstOrDefaultAsync(au => au.Id == user.Id);
             var character = CurrentUser.Characters.First();
             var guild = await _context.Guild.Include(s => s.Server).Include(f => f.Faction).Include(c => c.Characters).FirstOrDefaultAsync(g => g.GuildId == character.GuildId);
@@ -83,25 +85,49 @@ namespace Guildmate.Controllers
         }
 
         // GET: Guilds/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            var servers = await _context.Server
+                .Select(s => new SelectListItem() { Text = s.Name, Value = s.ServerId.ToString() })
+                .ToListAsync();
+            var factions = await _context.Faction
+                .Select(f => new SelectListItem() { Text = f.Name, Value = f.FactionId.ToString() })
+                .ToListAsync();
+            var viewModel = new GuildCreateViewModel();
+            viewModel.ServerOptions = servers;
+            viewModel.FactionOptions = factions;
+            return View(viewModel);
         }
 
         // POST: Guilds/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(GuildCreateViewModel guildCreateViewModel)
         {
             try
             {
+                var user = await GetCurrentUserAsync();
+
+                var guild = new Guild
+                {
+
+                    Name = guildCreateViewModel.Name,
+                    ServerId = guildCreateViewModel.ServerId,
+                    FactionId = guildCreateViewModel.FactionId,
+
+                };
+
+                _context.Guild.Add(guild);
+                await _context.SaveChangesAsync();
                 // TODO: Add insert logic here
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details));
             }
-            catch
+            catch(Exception ex)
+
+
             {
-                return View();
+                return View(guildCreateViewModel);
             }
         }
 
@@ -150,7 +176,7 @@ namespace Guildmate.Controllers
                 return View();
             }
         }
-        private async Task<ApplicationUser> GetUserAsync() => await _userManager.GetUserAsync(HttpContext.User);
+        private async Task<ApplicationUser> GetCurrentUserAsync() => await _userManager.GetUserAsync(HttpContext.User);
 
     }
 }
