@@ -1,0 +1,113 @@
+﻿@model Guildmate.Models.ViewModels.CharacterViewModels.CharacterCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Character</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserId" class="control-label"></label>
+                <select asp-for="ApplicationUserId" class="form-control" asp-items="ViewBag.ApplicationUserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FactionId" class="control-label"></label>
+                <select asp-for="FactionId" class="form-control factionSelect" id="factionId" asp-items="@Model.FactionOptions"><option selected disabled>Choose A Faction</option></select>
+            </div>
+
+
+
+            <div id="raceOptions">
+                <div class="form-group hidden" id="AllianceId">
+                    <label asp-for="RaceId" class="control-label"></label>
+                    <select asp-for="RaceId" class="form-control" asp-items="@Model.AllianceRaceOptions"></select>
+                </div>
+
+
+
+                <div class="form-group hidden" id="HordeId">
+                    <label asp-for="RaceId" class="control-label"></label>
+                    <select asp-for="RaceId" class="form-control" asp-items="@Model.HordeRaceOptions"></select>
+                </div>
+             </div>
+
+
+
+                <div id="classOptions">
+
+                    <div class="form-group hidden" id="HumanId">
+                        <label asp-for="ClassId" class="control-label"></label>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.HumanOptions"></select>
+                    </div>
+
+                    <div class="form-group hidden" id="DwarfId">
+                        <label asp-for="ClassId" class="control-label"></label>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.DwarfOptions"></select>
+                    </div>
+
+                    <div class="form-group hidden" id="NightElfId">
+                        <label asp-for="ClassId" class="control-label"></label>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.NightElfOptions"></select>
+                    </div>
+
+                    <div class="form-group hidden" id="GnomeId">
+                        <label asp-for="ClassId" class="control-label"></label>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.GnomeOptions"></select>
+                    </div>
+
+                    <div class="form-group hidden" id="UndeadId">
+                        <label asp-for="ClassId" class="control-label"></label>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.UndeadOptions"></select>
+                    </div>
+
+                    <div class="form-group hidden" id="TaurenId">
+                        <label asp-for="ClassId" class="control-label"></label>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.TaurenOptions"></select>
+                    </div>
+
+                    <div class="form-group hidden" id="OrcId">
+                        <label asp-for="ClassId" class="control-label"></label>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.OrcOptions"></select>
+                    </div>
+
+                    <div class="form-group hidden" id="TrollId">
+                        <label asp-for="ClassId" class="control-label"></label>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.TrollOptions"></select>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="form-group">
+                    <label asp-for="InventorySpace" class="control-label"></label>
+                    <input asp-for="InventorySpace" class="form-control" />
+                    <span asp-validation-for="InventorySpace" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
