@@ -3,12 +3,21 @@
 
 // Write your JavaScript code.
 
+//for each child in the div check for hidden class, if hidden exists dont add, if it doesnt not add
+
+var factionChildren = Array.prototype.slice.call(document.getElementById("raceOptions").children);
+
+factionChildren.forEach(child => child.classList.add("hidden"));
+
+const factionFilter = (factionChildren) => {
+    factionChildren.forEach(child => child.classList.add("hidden"));
+}
 
 var select_id = document.getElementById("factionId");
 select_id.addEventListener("change", async e => {
+    factionFilter(factionChildren)
     var factionSelected = e.target.value
     console.log(factionSelected)
-    debugger
     if (factionSelected == 1) {
         document.getElementById("AllianceId").classList.remove("hidden")
     } else if (factionSelected == 2) {
@@ -16,11 +25,28 @@ select_id.addEventListener("change", async e => {
     }
 })
 
+
+
+
+//for each child in the div check for hidden class, if hidden exists dont add, if it doesnt add
+
+
+var raceChildren = Array.prototype.slice.call(document.getElementById("classOptions").children);
+
+raceChildren.forEach(child => child.classList.add("hidden"));
+
+const raceFilter = (raceChildren) => {
+    raceChildren.forEach(child => child.classList.add("hidden"));
+}
+
+
 var allianceRace_id = document.getElementById("AllianceId");
 allianceRace_id.addEventListener("change", async event => {
+    raceFilter(raceChildren)
     var allianceRaceSelected = event.target.value
     console.log(allianceRaceSelected)
-    debugger
+
+
     if (allianceRaceSelected == 1) {
         document.getElementById("HumanId").classList.remove("hidden")
     } else if (allianceRaceSelected == 2) {
@@ -32,11 +58,16 @@ allianceRace_id.addEventListener("change", async event => {
     }
 })
 
+
+
+
+
+
 var hordeRace_id = document.getElementById("HordeId");
 hordeRace_id.addEventListener("change", async event => {
     var hordeRaceSelected = event.target.value
+    raceFilter(raceChildren)
     console.log(hordeRaceSelected)
-    debugger
     if (hordeRaceSelected == 5) {
         document.getElementById("UndeadId").classList.remove("hidden")
     } else if (hordeRaceSelected == 6) {
