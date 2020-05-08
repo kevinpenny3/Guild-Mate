@@ -5,6 +5,12 @@
 }
 
 <h1>Servers</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="Guilds">Create New Guild</a>
+</p>
+
+
 <form class="form-inline my-2 my-lg-0" asp-controller="Servers" asp-action="Index">
     <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Server Name">
     <button class="btn btn-secondary my-2 my-sm-0 compSearch" type="submit">Filter</button>

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Guildmate.Controllers
 {
@@ -51,18 +52,21 @@ namespace Guildmate.Controllers
 
                 case "horde":
                     guilds = await _context.Guild
+                        .Where(g => g.ServerId == server)
                         .Where(f => f.FactionId == 2)
                         .Include(s => s.Server)
                         .ToListAsync();
                     break;
                 case "alliance":
                     guilds = await _context.Guild
+                        .Where(g => g.ServerId == server)
                         .Where(f => f.FactionId == 1)
                         .Include(s => s.Server)
                         .ToListAsync();
                     break;
                 case "all":
                     guilds = await _context.Guild
+                        .Where(g => g.ServerId == server)
                         .Include(f => f.Faction)
                         .Include(s => s.Server)
                         .ToListAsync();
@@ -77,11 +81,19 @@ namespace Guildmate.Controllers
             var user = await GetCurrentUserAsync();
             var CurrentUser = await _context.ApplicationUser.Include(c => c.Characters).FirstOrDefaultAsync(au => au.Id == user.Id);
             var character = CurrentUser.Characters.First();
+
+            if(character.GuildId == null)
+            {
+                return RedirectToAction("all", "Servers");
+            }
+            else
+            {
             var guild = await _context.Guild.Include(s => s.Server).Include(f => f.Faction).Include(c => c.Characters).FirstOrDefaultAsync(g => g.GuildId == character.GuildId);
+            return View(guild);
+            }
 
            
            
-            return View(guild);
         }
 
         // GET: Guilds/Create
@@ -167,21 +179,39 @@ namespace Guildmate.Controllers
         }
 
         // GET: Guilds/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            
+            var guild = await _context.Guild.FirstOrDefaultAsync(g => g.GuildId == id);
+            return View(guild);
         }
 
         // POST: Guilds/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> DeleteGuild(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                var user = await GetCurrentUserAsync();
 
-                return RedirectToAction(nameof(Index));
+                var myGuild = await _context.Guild.FirstOrDefaultAsync(g => g.GuildId == id);
+                _context.Remove(myGuild);
+
+                var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+
+                userCharacter.GuildId = null;
+                userCharacter.RankId = null;
+
+                _context.Character.Update(userCharacter);
+
+
+                await _context.SaveChangesAsync();
+                TempData["deleteSuccessful"] = "Your Guild has been deleted";
+                return RedirectToAction("Index", "Servers");
+
+                
+
             }
             catch
             {
