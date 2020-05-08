@@ -12,8 +12,6 @@ namespace Guildmate.Models.ViewModels.GuildViewModels
         
         public int GuildId { get; set; }
 
-
-
         public string Name { get; set; }
 
         public int ServerId { get; set; }
@@ -26,5 +24,7 @@ namespace Guildmate.Models.ViewModels.GuildViewModels
 
         public List<SelectListItem> ServerOptions { get; set; }
         public List<SelectListItem> FactionOptions { get; set; }
+
+        public List<Server> Servers { get; set; }
     }
 }

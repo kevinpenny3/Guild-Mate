@@ -119,17 +119,16 @@ namespace Guildmate.Controllers
 
                 _context.Guild.Add(guild);
 
-                var CurrentUser = await _context.ApplicationUser.Include(c => c.Characters).FirstOrDefaultAsync(au => au.Id == user.Id);
-                var userCharacter = CurrentUser.Characters.First();
 
-                var character = new Character
-                {
-                    CharacterId = userCharacter.CharacterId,
-                    GuildId = guild.GuildId,
-                    RankId = 1
-                };
 
-                _context.Character.Update(character);
+                var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+
+                userCharacter.Guild = guild;
+                userCharacter.RankId = 1;
+
+                _context.Character.Update(userCharacter);
+
+
                 await _context.SaveChangesAsync();
                 // TODO: Add insert logic here
 
@@ -139,7 +138,8 @@ namespace Guildmate.Controllers
 
 
             {
-                return View(guildCreateViewModel);
+                Console.WriteLine("{0} Exception caught.", ex);
+                return View();
             }
         }
 

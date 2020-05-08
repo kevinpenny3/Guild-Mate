@@ -47,7 +47,7 @@ allianceRace_id.addEventListener("change", async event => {
     raceFilter(raceChildren)
     var allianceRaceSelected = event.target.value
     console.log(allianceRaceSelected)
-
+    debugger
 
     if (allianceRaceSelected == 1) {
         document.getElementById("HumanId").classList.remove("hidden")
@@ -58,6 +58,7 @@ allianceRace_id.addEventListener("change", async event => {
     } else if (allianceRaceSelected == 4) {
         document.getElementById("GnomeId").classList.remove("hidden")
     }
+    
 })
 
 
