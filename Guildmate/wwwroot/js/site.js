@@ -13,9 +13,18 @@ const factionFilter = (factionChildren) => {
     factionChildren.forEach(child => child.classList.add("hidden"));
 }
 
+var raceChildren = Array.prototype.slice.call(document.getElementById("classOptions").children);
+
+raceChildren.forEach(child => child.classList.add("hidden"));
+
+const raceFilter = (raceChildren) => {
+    raceChildren.forEach(child => child.classList.add("hidden"));
+}
+
 var select_id = document.getElementById("factionId");
 select_id.addEventListener("change", async e => {
     factionFilter(factionChildren)
+    raceFilter(raceChildren)
     var factionSelected = e.target.value
     console.log(factionSelected)
     if (factionSelected == 1) {
@@ -31,13 +40,6 @@ select_id.addEventListener("change", async e => {
 //for each child in the div check for hidden class, if hidden exists dont add, if it doesnt add
 
 
-var raceChildren = Array.prototype.slice.call(document.getElementById("classOptions").children);
-
-raceChildren.forEach(child => child.classList.add("hidden"));
-
-const raceFilter = (raceChildren) => {
-    raceChildren.forEach(child => child.classList.add("hidden"));
-}
 
 
 var allianceRace_id = document.getElementById("AllianceId");

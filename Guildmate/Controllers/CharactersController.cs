@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Guildmate.Controllers
 {
@@ -116,11 +117,13 @@ namespace Guildmate.Controllers
             try
             {
                 var user = await GetCurrentUserAsync();
-
+                
+                var ClassRaceId = await _context.ClassRace.FirstOrDefaultAsync(c => c.ClassId == characterCreateViewModel.ClassId && c.RaceId == characterCreateViewModel.RaceId);
                 var character = new Character
                 {
+                    ApplicationUserId = user.Id,
                     Name = characterCreateViewModel.Name,
-                    ClassRace = characterCreateViewModel.ClassRace,
+                    ClassRaceId = ClassRaceId.ClassRaceId,
                     GuildId = characterCreateViewModel.GuildId,
                     RankId = characterCreateViewModel.RankId,
                     InventorySpace = characterCreateViewModel.InventorySpace,

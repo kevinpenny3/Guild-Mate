@@ -25,6 +25,13 @@ namespace Guildmate.Models.ViewModels.CharacterViewModels
         public int FactionId { get; set; }
         public Faction Faction { get; set; }
 
+        public int ClassId { get; set; }
+        public Class Class { get; set; }
+
+        public int RaceId { get; set; }
+
+        public Race Race { get; set; }
+
         public int? GuildId { get; set; }
         public Guild Guild { get; set; }
 
