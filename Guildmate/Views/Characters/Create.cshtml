@@ -13,10 +13,6 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ApplicationUserId" class="control-label"></label>
-                <select asp-for="ApplicationUserId" class="form-control" asp-items="ViewBag.ApplicationUserId"></select>
-            </div>
-            <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
@@ -31,14 +27,14 @@
             <div id="raceOptions">
                 <div class="form-group hidden" id="AllianceId">
                     <label asp-for="RaceId" class="control-label"></label>
-                    <select asp-for="RaceId" class="form-control" asp-items="@Model.AllianceRaceOptions"></select>
+                    <select asp-for="RaceId" class="form-control" asp-items="@Model.AllianceRaceOptions"><option selected disabled>Choose A Race</option></select>
                 </div>
 
 
 
                 <div class="form-group hidden" id="HordeId">
                     <label asp-for="RaceId" class="control-label"></label>
-                    <select asp-for="RaceId" class="form-control" asp-items="@Model.HordeRaceOptions"></select>
+                    <select asp-for="RaceId" class="form-control" asp-items="@Model.HordeRaceOptions"><option selected disabled>Choose A Race</option></select>
                 </div>
              </div>
 
@@ -48,42 +44,42 @@
 
                     <div class="form-group hidden" id="HumanId">
                         <label asp-for="ClassId" class="control-label"></label>
-                        <select asp-for="ClassId" class="form-control" asp-items="@Model.HumanOptions"></select>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.HumanOptions"><option selected disabled>Choose A Class</option></select>
                     </div>
 
                     <div class="form-group hidden" id="DwarfId">
                         <label asp-for="ClassId" class="control-label"></label>
-                        <select asp-for="ClassId" class="form-control" asp-items="@Model.DwarfOptions"></select>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.DwarfOptions"><option selected disabled>Choose A Class</option></select>
                     </div>
 
                     <div class="form-group hidden" id="NightElfId">
                         <label asp-for="ClassId" class="control-label"></label>
-                        <select asp-for="ClassId" class="form-control" asp-items="@Model.NightElfOptions"></select>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.NightElfOptions"><option selected disabled>Choose A Class</option></select>
                     </div>
 
                     <div class="form-group hidden" id="GnomeId">
                         <label asp-for="ClassId" class="control-label"></label>
-                        <select asp-for="ClassId" class="form-control" asp-items="@Model.GnomeOptions"></select>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.GnomeOptions"><option selected disabled>Choose A Class</option></select>
                     </div>
 
                     <div class="form-group hidden" id="UndeadId">
                         <label asp-for="ClassId" class="control-label"></label>
-                        <select asp-for="ClassId" class="form-control" asp-items="@Model.UndeadOptions"></select>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.UndeadOptions"><option selected disabled>Choose A Class</option></select>
                     </div>
 
                     <div class="form-group hidden" id="TaurenId">
                         <label asp-for="ClassId" class="control-label"></label>
-                        <select asp-for="ClassId" class="form-control" asp-items="@Model.TaurenOptions"></select>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.TaurenOptions"><option selected disabled>Choose A Class</option></select>
                     </div>
 
                     <div class="form-group hidden" id="OrcId">
                         <label asp-for="ClassId" class="control-label"></label>
-                        <select asp-for="ClassId" class="form-control" asp-items="@Model.OrcOptions"></select>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.OrcOptions"><option selected disabled>Choose A Class</option></select>
                     </div>
 
                     <div class="form-group hidden" id="TrollId">
                         <label asp-for="ClassId" class="control-label"></label>
-                        <select asp-for="ClassId" class="form-control" asp-items="@Model.TrollOptions"></select>
+                        <select asp-for="ClassId" class="form-control" asp-items="@Model.TrollOptions"><option selected disabled>Choose A Class</option></select>
                     </div>
                 </div>
 
@@ -93,11 +89,11 @@
 
 
 
-                <div class="form-group">
+                @*<div class="form-group">
                     <label asp-for="InventorySpace" class="control-label"></label>
                     <input asp-for="InventorySpace" class="form-control" />
                     <span asp-validation-for="InventorySpace" class="text-danger"></span>
-                </div>
+                </div>*@
 
 
                 <div class="form-group">

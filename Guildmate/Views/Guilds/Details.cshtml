@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+    <h1>Details</h1>
 
 <div>
     <h4>Guild</h4>
@@ -46,12 +46,27 @@
                         @Html.DisplayFor(modelItem => character.Name)
 
                     </li>
+
+                    @Html.DisplayFor(modelItem => character.RankId)
+
                 }
             </ul>
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.GuildId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @foreach (var character in Model.Characters)
+    {
+        if (character.RankId == 1)
+        {
+            <form asp-action="DeleteGuild" asp-route-id="@Model.GuildId">
+                <input type="submit" value="Delete" />
+            </form>
+        }
+
+    }
+
+    | <a asp-action="Index">Back to List</a>
 </div>
+
+}
