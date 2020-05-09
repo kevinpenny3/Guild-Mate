@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Guildmate.Data;
 using Guildmate.Models;
 using Guildmate.Models.ViewModels.CharacterViewModels;
+using Guildmate.Models.ViewModels.GuildViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -141,20 +142,38 @@ namespace Guildmate.Controllers
         }
 
         // GET: Characters/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int CharacterId)
         {
-            return View();
+            var user = await GetCurrentUserAsync();
+
+            var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+            var viewModel = new CharacterGuildViewModel
+            {
+                CharacterId = userCharacter.CharacterId,
+                GuildId = userCharacter.GuildId,
+                RankId = userCharacter.RankId
+            };
+            return View(viewModel);
         }
 
         // POST: Characters/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> JoinGuild(int id, CharacterGuildViewModel characterGuildViewModel)
         {
             try
             {
-                // TODO: Add update logic here
+                var user = await GetCurrentUserAsync();
 
+                var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+
+                userCharacter.GuildId = characterGuildViewModel.GuildId;
+                userCharacter.RankId = 2;
+
+                _context.Character.Update(userCharacter);
+
+
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch

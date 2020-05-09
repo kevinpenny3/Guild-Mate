@@ -40,23 +40,28 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Server.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Faction.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Banner)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.GuildId">Join Guild</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Server.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Faction.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Banner)
+            </td>
+            <td>
+              <form asp-action="JoinGuild" asp-route-id="@item.GuildId" asp-controller="Characters">
+                  <input type="submit" value="Join Guild" />
+              </form>
+            </td>
+                    
+
+
+                </tr>
         }
     </tbody>
 </table>

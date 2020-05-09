@@ -63,6 +63,12 @@
                 <input type="submit" value="Delete" />
             </form>
         }
+        if (character.GuildId == null)
+        {
+            <form asp-action="JoinGuild" asp-route-id="@Model.GuildId" asp-controller="Characters">
+                <input type="submit" value="Delete" />
+            </form>
+        }
 
     }
 
