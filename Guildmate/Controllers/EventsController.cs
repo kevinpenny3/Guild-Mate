@@ -36,9 +36,21 @@ namespace Guildmate.Controllers
         }
 
         // GET: Events/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var user = await GetUserAsync();
+            var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+
+            var singleEvent = await _context.Event
+                     .Include(g => g.Guild)
+                     .Include(ce => ce.CharacterEvents)
+                     .ThenInclude(c => c.Character)
+                     .Include(ce => ce.CharacterEvents)
+                     .ThenInclude(c => c.Character.ClassRace.Class)
+                     .Include(ce => ce.CharacterEvents)
+                     .ThenInclude(r => r.Role)
+                     .FirstOrDefaultAsync(g => g.GuildId == userCharacter.GuildId);
+            return View(singleEvent);
         }
 
         // GET: Events/Create
