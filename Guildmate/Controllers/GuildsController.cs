@@ -92,6 +92,9 @@ namespace Guildmate.Controllers
                     .Include(s => s.Server)
                     .Include(f => f.Faction)
                     .Include(c => c.Characters)
+                    .ThenInclude(cr => cr.ClassRace.Class)
+                    .Include(c => c.Characters)
+                    .ThenInclude(cr => cr.ClassRace.Class)
                     .FirstOrDefaultAsync(g => g.GuildId == character.GuildId);
             return View(guild);
             }
