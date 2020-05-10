@@ -46,6 +46,8 @@ namespace Guildmate.Controllers
                      .Include(ce => ce.CharacterEvents)
                      .ThenInclude(c => c.Character)
                      .Include(ce => ce.CharacterEvents)
+                     .ThenInclude(c => c.Character.ClassRace.Class)
+                     .Include(ce => ce.CharacterEvents)
                      .ThenInclude(r => r.Role)
                      .FirstOrDefaultAsync(g => g.GuildId == userCharacter.GuildId);
             return View(singleEvent);
