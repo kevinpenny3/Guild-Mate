@@ -88,7 +88,11 @@ namespace Guildmate.Controllers
             }
             else
             {
-            var guild = await _context.Guild.Include(s => s.Server).Include(f => f.Faction).Include(c => c.Characters).FirstOrDefaultAsync(g => g.GuildId == character.GuildId);
+            var guild = await _context.Guild
+                    .Include(s => s.Server)
+                    .Include(f => f.Faction)
+                    .Include(c => c.Characters)
+                    .FirstOrDefaultAsync(g => g.GuildId == character.GuildId);
             return View(guild);
             }
 
