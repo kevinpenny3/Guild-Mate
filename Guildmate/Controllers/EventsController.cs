@@ -26,10 +26,13 @@ namespace Guildmate.Controllers
         public async Task<ActionResult> Index()
         {
             var user = await GetUserAsync();
-            var events = await _context.Event
+            var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+
+            var allEvents = await _context.Event
+                .Where(e => e.GuildId == userCharacter.GuildId)
                 .Include(g => g.Guild)
                 .ToListAsync();
-            return View(events);
+            return View(allEvents);
         }
 
         // GET: Events/Details/5
