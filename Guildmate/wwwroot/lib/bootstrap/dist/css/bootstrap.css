@@ -40,12 +40,114 @@
 *::after {
   box-sizing: border-box;
 }
+/*Faction Colors*/
+.Horde {
+    color: #8c1616;
+}
+
+.Alliance {
+    color: #162c57;
+}
+
+/*Faction Backgrounds*/
+.Hordebg {
+    background-color: #8c161680;
+}
+
+.Alliancebg {
+    background-color: #162c5780;
+}
+
+/*Class Colors*/
+
+.Druid {
+    color: #FF7D0A;
+}
+
+.Hunter {
+    color: #A9D271;
+}
+
+.Mage {
+    color: #40C7EB;
+}
+
+.Paladin {
+    color: #F58CBA;
+}
+
+.Priest {
+    color: #FFFFFF;
+}
+
+.Rogue {
+    color: #FFF569;
+}
+
+.Shaman {
+    color: #0070DE;
+}
+
+.Warlock {
+    color: #8787ED;
+}
+
+.Warrior {
+    color: #C79C6E;
+}
+
+/*Class Background Colors*/
+
+.DruidBg {
+    background-color: #FF7D0A80;
+}
+
+.HunterBg {
+    background-color: #A9D27180;
+}
+
+.MageBg {
+    background-color: #40C7EB80;
+}
+
+.PaladinBg {
+    background-color: #F58CBA80;
+}
+
+.PriestBg {
+    background-color: #FFFFFF80;
+}
+
+.RogueBg {
+    background-color: #FFF56980;
+}
+
+.ShamanBg {
+    background-color: #0070DE80;
+}
+
+.WarlockBg {
+    background-color: #8787ED80;
+}
+
+.WarriorBg {
+    background-color: #C79C6E80;
+}
+
+.Guildinfo {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.GuildRoster {
+    margin-top: 2rem;
+}
 
 html {
-  font-family: sans-serif;
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {

@@ -24,14 +24,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.ClassRace.Class)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Guild)
-            </th>
-            <th></th>
-        </tr>
+                @if (Html.DisplayFor(modelItem => modelItem.Guild.Name) == null)
+                {
+                
+                }else{
+                    <th>
+                        @Html.DisplayNameFor(model => model.Guild)
+                    </th>
+                }
+            </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="@Html.DisplayFor(model => model.ClassRace.Class.Name)Bg">
             <td>
                 @Html.DisplayFor(modelItem => modelItem.Name)
             </td>
@@ -44,9 +48,13 @@
             <td>
                 @Html.DisplayFor(modelItem => modelItem.ClassRace.Class.Name)
             </td>
+            @if(Html.DisplayFor(modelItem => modelItem.Guild.Name) != null)
+            {
             <td>
                 @Html.DisplayFor(modelItem => modelItem.Guild.Name)
             </td>
+
+            }
         </tr>
 
     </tbody>
