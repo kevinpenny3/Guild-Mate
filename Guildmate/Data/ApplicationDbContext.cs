@@ -5,6 +5,7 @@ using Guildmate.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Guildmate.Models.ViewModels.CharacterViewModels;
 
 namespace Guildmate.Data
 {
@@ -798,6 +799,7 @@ namespace Guildmate.Data
 
 
         }
+        public DbSet<Guildmate.Models.ViewModels.CharacterViewModels.CharacterEventsViewModel> CharacterEventsViewModel { get; set; }
 
     }
 }

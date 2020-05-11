@@ -66,9 +66,10 @@
 <div class="EventRoster">
     <h3>Event Roster</h3>
 
-    <form asp-action="AttendEvent" asp-route-id="@Model.EventId" asp-controller="CharacterEvents">
+    <a asp-action="AttendEvent" asp-route-id="@Model.EventId" asp-controller="CharacterEvents">
+        <input type="hidden" value="@Model.EventId"/>
         <input type="submit" value="Attend Event" />
-    </form>
+    </a>
 
     <table class="table">
         <thead>
