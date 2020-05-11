@@ -1,5 +1,7 @@
-﻿@model IEnumerable<Guildmate.Models.Guild>
+﻿@using Microsoft.AspNetCore.Identity;
 
+@model IEnumerable<Guildmate.Models.Guild>
+@inject UserManager<ApplicationUser> userManager
 @{
     ViewData["Title"] = "Index";
 }
@@ -31,10 +33,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Faction)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Banner)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -50,18 +48,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Faction.Name)
             </td>
+           @if(userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.ClassRace.Race.FactionId == item.FactionId) != null)
+            {
             <td>
-                @Html.DisplayFor(modelItem => item.Banner)
-            </td>
-            <td>
-              <form asp-action="JoinGuild" asp-route-id="@item.GuildId" asp-controller="Characters">
-                  <input type="submit" value="Join Guild" />
-              </form>
-            </td>
-                    
+                      <form asp-action="JoinGuild"  asp-route-id="@item.GuildId" asp-controller="Characters">
+                          <input type="hidden" value="@item.GuildId" name="GuildId" />
+                          <input type="submit" value="Join Guild" />
+                      </form>
 
-
-                </tr>
+            </td>
+                }
+            </tr>
         }
     </tbody>
 </table>

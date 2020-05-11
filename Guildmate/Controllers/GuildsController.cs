@@ -29,11 +29,13 @@ namespace Guildmate.Controllers
         public async Task<ActionResult> Index(int server, string searchString, string filter)
         {
             var user = await GetCurrentUserAsync();
-            var guilds = await _context.Guild
-                .Where(g => g.ServerId == server)
-                .Include(f => f.Faction)
-                .Include(s => s.Server)
-                .ToListAsync();
+            var CurrentUser = await _context.ApplicationUser
+                .Include(c => c.Characters)
+                .ThenInclude(cr => cr.ClassRace.Race)
+                .FirstOrDefaultAsync(au => au.Id == user.Id);
+            var character = CurrentUser.Characters.First();
+
+            var guilds = new List<Guild>();
 
 
             if (searchString != null)
@@ -54,6 +56,7 @@ namespace Guildmate.Controllers
                     guilds = await _context.Guild
                         .Where(g => g.ServerId == server)
                         .Where(f => f.FactionId == 2)
+                        .Include(f => f.Faction)
                         .Include(s => s.Server)
                         .ToListAsync();
                     break;
@@ -61,6 +64,7 @@ namespace Guildmate.Controllers
                     guilds = await _context.Guild
                         .Where(g => g.ServerId == server)
                         .Where(f => f.FactionId == 1)
+                        .Include(f => f.Faction)
                         .Include(s => s.Server)
                         .ToListAsync();
                     break;
