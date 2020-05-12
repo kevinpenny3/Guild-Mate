@@ -1,4 +1,7 @@
-﻿@model Guildmate.Models.Event
+﻿@using Microsoft.AspNetCore.Identity;
+
+@model Guildmate.Models.Event
+@inject UserManager<ApplicationUser> userManager
 
 @{
     ViewData["Title"] = "Details";
@@ -10,39 +13,40 @@
     <h4>Event</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.StartDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StartDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EndDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EndDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MaxAttendees)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MaxAttendees)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Guild)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Guild.Name)
         </dd>
         <ul>
-            @foreach(var character in Model.CharacterEvents)
+            @foreach (var character in Model.CharacterEvents)
             {
+                //if(Model.CharacterEvents.Contains(character.CharacterId && Model.EventId))
                 <li>
                     @Html.DisplayFor(item => character.Character.Name) - @Html.DisplayFor(item => character.Role.Name)
                 </li>
@@ -50,13 +54,23 @@
         </ul>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.EventId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
 
-<div class="GuildRoster">
-    <h3>Guild Roster</h3>
+@if (userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.RankId == 1) != null)
+    {
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.EventId">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    }
+
+<div class="EventRoster">
+    <h3>Event Roster</h3>
+
+    <a asp-action="AttendEvent" asp-route-eventId="@Model.EventId" asp-controller="CharacterEvents">
+        <input type="hidden" value="@Model.EventId" name="eventId"/>
+        <input type="submit" value="Attend Event" />
+    </a>
+
     <table class="table">
         <thead>
             <tr>

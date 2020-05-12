@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Guildmate.Data;
 using Guildmate.Models;
+using Guildmate.Models.ViewModels.EventsViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace Guildmate.Controllers
         // GET: Events
         public async Task<ActionResult> Index()
         {
-            var user = await GetUserAsync();
+            var user = await GetCurrentUserAsync();
             var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
 
             var allEvents = await _context.Event
@@ -38,23 +39,23 @@ namespace Guildmate.Controllers
         // GET: Events/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var user = await GetUserAsync();
+            var user = await GetCurrentUserAsync();
             var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
 
             var singleEvent = await _context.Event
-                     .Include(g => g.Guild)
-                     .Include(ce => ce.CharacterEvents)
-                     .ThenInclude(c => c.Character)
-                     .Include(ce => ce.CharacterEvents)
-                     .ThenInclude(c => c.Character.ClassRace.Class)
-                     .Include(ce => ce.CharacterEvents)
-                     .ThenInclude(r => r.Role)
-                     .FirstOrDefaultAsync(g => g.GuildId == userCharacter.GuildId);
+                     .Include(e => e.Guild)
+                     .Include(e => e.CharacterEvents)
+                        .ThenInclude(ce => ce.Character)
+                     .Include(e => e.CharacterEvents)
+                        .ThenInclude(ce => ce.Character.ClassRace.Class)
+                     .Include(e => e.CharacterEvents)
+                        .ThenInclude(ce => ce.Role)
+                     .FirstOrDefaultAsync(e => e.EventId == id);
             return View(singleEvent);
         }
 
         // GET: Events/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             return View();
         }
@@ -62,12 +63,26 @@ namespace Guildmate.Controllers
         // POST: Events/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(Event newEvent)
         {
             try
             {
-                // TODO: Add insert logic here
+                var user = await GetCurrentUserAsync();
+                var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
 
+                var guildEvent = new Event
+                {
+
+                    Name = newEvent.Name,
+                    StartDate = newEvent.StartDate,
+                    EndDate = newEvent.EndDate,
+                    MaxAttendees = newEvent.MaxAttendees,
+                    GuildId = userCharacter.GuildId.Value,
+
+                };
+
+                _context.Event.Add(guildEvent);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -121,7 +136,7 @@ namespace Guildmate.Controllers
                 return View(); 
             }
         }
-        private async Task<ApplicationUser> GetUserAsync() => await _userManager.GetUserAsync(HttpContext.User);
+        private async Task<ApplicationUser> GetCurrentUserAsync() => await _userManager.GetUserAsync(HttpContext.User);
 
     }
 }

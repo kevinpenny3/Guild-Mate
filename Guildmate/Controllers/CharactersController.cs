@@ -49,65 +49,74 @@ namespace Guildmate.Controllers
         // GET: Characters/Create
         public async Task<ActionResult> Create()
         {
+
+
             var factions = await _context.Faction
                 .Select(f => new SelectListItem() { Text = f.Name, Value = f.FactionId.ToString() })
-                .ToListAsync();
-            var allianceRaces = await _context.Race
-                .Where(f => f.FactionId == 1)
+               .ToListAsync();
+            var races = await _context.Race
                 .Select(r => new SelectListItem() { Text = r.Name, Value = r.RaceId.ToString() })
                 .ToListAsync();
-            var hordeRaces = await _context.Race
-                .Where(f => f.FactionId == 2)
-                .Select(r => new SelectListItem() { Text = r.Name, Value = r.RaceId.ToString() })
+            var classes = await _context.Class
+                .Select(c => new SelectListItem() { Text = c.Name, Value = c.ClassId.ToString() })
                 .ToListAsync();
-            var humanClasses = await _context.ClassRace
-                .Where(cr => cr.RaceId == 1)
-                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
-                .ToListAsync();
-            var dwarfClasses = await _context.ClassRace
-                .Where(cr => cr.RaceId == 2)
-                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
-                .ToListAsync();
-            var nightElfClasses = await _context.ClassRace
-                .Where(cr => cr.RaceId == 3)
-                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
-                .ToListAsync();
-            var gnomeClasses = await _context.ClassRace
-                .Where(cr => cr.RaceId == 4)
-                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
-                .ToListAsync();
-            var undeadClasses = await _context.ClassRace
-                .Where(cr => cr.RaceId == 5)
-                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
-                .ToListAsync();
-            var taurenClasses = await _context.ClassRace
-                .Where(cr => cr.RaceId == 6)
-                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
-                .ToListAsync();
-            var orcClasses = await _context.ClassRace
-                .Where(cr => cr.RaceId == 7)
-                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
-                .ToListAsync();
-            var trollClasses = await _context.ClassRace
-                .Where(cr => cr.RaceId == 8)
-                .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
-                .ToListAsync();
-
-
             var viewModel = new CharacterCreateViewModel();
             viewModel.FactionOptions = factions;
-            viewModel.AllianceRaceOptions = allianceRaces;
-            viewModel.HordeRaceOptions = hordeRaces;
-            viewModel.HumanOptions = humanClasses;
-            viewModel.DwarfOptions = dwarfClasses;
-            viewModel.NightElfOptions = nightElfClasses;
-            viewModel.GnomeOptions = gnomeClasses;
-            viewModel.UndeadOptions = undeadClasses;
-            viewModel.TaurenOptions = taurenClasses;
-            viewModel.OrcOptions = orcClasses;
-            viewModel.TrollOptions = trollClasses;
-
+            viewModel.RaceOptions = races;
+            viewModel.ClassOptions = classes;
             return View(viewModel);
+
+
+
+
+
+
+
+
+            //var humanClasses = await _context.ClassRace
+            //    .Where(cr => cr.RaceId == 1)
+            //    .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+            //    .ToListAsync();
+            //var dwarfClasses = await _context.ClassRace
+            //    .Where(cr => cr.RaceId == 2)
+            //    .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+            //    .ToListAsync();
+            //var nightElfClasses = await _context.ClassRace
+            //    .Where(cr => cr.RaceId == 3)
+            //    .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+            //    .ToListAsync();
+            //var gnomeClasses = await _context.ClassRace
+            //    .Where(cr => cr.RaceId == 4)
+            //    .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+            //    .ToListAsync();
+            //var undeadClasses = await _context.ClassRace
+            //    .Where(cr => cr.RaceId == 5)
+            //    .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+            //    .ToListAsync();
+            //var taurenClasses = await _context.ClassRace
+            //    .Where(cr => cr.RaceId == 6)
+            //    .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+            //    .ToListAsync();
+            //var orcClasses = await _context.ClassRace
+            //    .Where(cr => cr.RaceId == 7)
+            //    .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+            //    .ToListAsync();
+            //var trollClasses = await _context.ClassRace
+            //    .Where(cr => cr.RaceId == 8)
+            //    .Select(c => new SelectListItem() { Text = c.Class.Name, Value = c.ClassId.ToString() })
+            //    .ToListAsync();
+            //viewModel.AllianceRaceOptions = allianceRaces;
+            //viewModel.HordeRaceOptions = hordeRaces;
+            //viewModel.HumanOptions = humanClasses;
+            //viewModel.DwarfOptions = dwarfClasses;
+            //viewModel.NightElfOptions = nightElfClasses;
+            //viewModel.GnomeOptions = gnomeClasses;
+            //viewModel.UndeadOptions = undeadClasses;
+            //viewModel.TaurenOptions = taurenClasses;
+            //viewModel.OrcOptions = orcClasses;
+            //viewModel.TrollOptions = trollClasses;
+
+            //return View(viewModel);
         }
 
         // POST: Characters/Create
@@ -117,17 +126,14 @@ namespace Guildmate.Controllers
         {
             try
             {
+
                 var user = await GetCurrentUserAsync();
-                
                 var ClassRaceId = await _context.ClassRace.FirstOrDefaultAsync(c => c.ClassId == characterCreateViewModel.ClassId && c.RaceId == characterCreateViewModel.RaceId);
                 var character = new Character
                 {
                     ApplicationUserId = user.Id,
                     Name = characterCreateViewModel.Name,
                     ClassRaceId = ClassRaceId.ClassRaceId,
-                    GuildId = characterCreateViewModel.GuildId,
-                    RankId = characterCreateViewModel.RankId,
-                    InventorySpace = characterCreateViewModel.InventorySpace,
                 };
 
                 _context.Character.Add(character);
@@ -135,9 +141,9 @@ namespace Guildmate.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return View(characterCreateViewModel);
+                return View(nameof(Index));
             }
         }
 
@@ -164,7 +170,6 @@ namespace Guildmate.Controllers
             try
             {
                 var user = await GetCurrentUserAsync();
-
                 var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
 
                 userCharacter.GuildId = characterGuildViewModel.GuildId;
@@ -172,9 +177,44 @@ namespace Guildmate.Controllers
 
                 _context.Character.Update(userCharacter);
 
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public async Task<ActionResult> RemoveFromGuild(int id)
+        {
+            var user = await GetCurrentUserAsync();
+
+            var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+            var character = await _context.Character.FirstOrDefaultAsync(c => c.CharacterId == id);
+            return View(character);
+        }
+
+        // POST: Characters/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RemoveFromGuild(int id, CharacterGuildViewModel characterGuildViewModel)
+        {
+            try
+            {
+                var user = await GetCurrentUserAsync();
+                var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+                var character = await _context.Character.FirstOrDefaultAsync(c => c.CharacterId == id);
+
+                character.GuildId = null;
+                character.RankId = null;
+
+                _context.Character.Update(character);
 
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
             catch
             {

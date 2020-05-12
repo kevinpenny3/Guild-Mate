@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,20 +10,20 @@ namespace Guildmate.Models.ViewModels.CharacterViewModels
 {
     public class CharacterEventsViewModel
     {
+        [Key]
+        public int CharacterEventId { get; set; }
+
         public int EventId { get; set; }
+        public Event Event { get; set; }
 
-        public string Name { get; set; }
 
-        public DateTime StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public int? CharacterId { get; set; }
+        public Character Character { get; set; }
 
-        public int MaxAttendees { get; set; }
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
 
-        public int GuildId { get; set; }
-        public Guild Guild { get; set; }
-
-        public List<CharacterEvent> CharacterEvents { get; set; }
-        public List<Character> Characters { get; set; }
-        public Character character { get; set; }
+        [NotMapped]
+        public List<SelectListItem> RoleOptions { get; set; }
     }
 }
