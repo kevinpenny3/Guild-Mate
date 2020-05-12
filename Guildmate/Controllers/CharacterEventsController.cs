@@ -36,13 +36,14 @@ namespace Guildmate.Controllers
         }
 
         // GET: CharacterEvents/Create
-        public async Task<ActionResult> AttendEvent()
+        public async Task<ActionResult> AttendEvent(int eventId)
         {
 
             var roles = await _context.Role
                 .Select(r => new SelectListItem() { Text = r.Name, Value = r.RoleId.ToString() })
                 .ToListAsync();
             var viewModel = new CharacterEventsViewModel();
+            viewModel.EventId = eventId;
             viewModel.RoleOptions = roles;
             return View(viewModel);
         }
