@@ -27,8 +27,17 @@
     @foreach (var character in Model.ApplicationUser.Characters)
     {
         <div class="characterCard card border-@Html.DisplayFor(model => model.ClassRace.Race.Faction.Name) mb-3" style="max-width: 20rem;">
-            <h2 class="card-header @Html.DisplayFor(model => model.ClassRace.Class.Name)Bg">@Html.DisplayFor(modelItem => modelItem.Name)</h2>
-            <div class="card-body">
+            <div class="card-header @Html.DisplayFor(model => model.ClassRace.Class.Name)Bg">
+                @*<div>
+                    <img src="~/Images/classIcons/@Html.DisplayFor(model => model.ClassRace.Class.Icon)" />
+                </div>*@
+                <div>
+                    <h2>@Html.DisplayFor(modelItem => modelItem.Name)</h2>
+                </div>
+            </div>
+            <div class="card">
+                <img src="~/Images/classIcons/@Html.DisplayFor(model => model.ClassRace.Class.Icon)" class="card-img-top" />
+                <div class="card-img-overlay">
                 <dt>
                     @Html.DisplayNameFor(model => model.ClassRace.Race.Faction)
                 </dt>
@@ -56,6 +65,7 @@
                         @Html.DisplayFor(model => model.Guild.Name)
                     </dd>
                 }
+                </div>
             </div>
         </div>
     }

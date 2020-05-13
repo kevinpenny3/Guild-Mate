@@ -203,9 +203,13 @@ img.BackgroundImage {
     }
 }
 
+.characterImage img{
+
+}
+
 .jumbotron {
     z-index: 1;
-    margin-top: 6rem;   
+    margin-top: 6rem;
 }
 .jumbotron{
     color: white;
@@ -249,4 +253,18 @@ img.BackgroundImage {
 
 a.nav-item:hover {
     color: gold
+}
+
+.characterRow {
+    background-color: lightgray;
+    margin: 0;
+}
+
+.card-img-top {
+    opacity: .15;
+}
+
+.tableClassIcons img{
+    height: 40px;
+    width:auto
 }

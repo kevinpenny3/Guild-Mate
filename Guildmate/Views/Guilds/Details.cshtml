@@ -65,11 +65,11 @@
                         @Html.DisplayFor(item => character.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => character.ClassRace.Class.Name)
-                    </td>
-                    <td>
                         @Html.DisplayFor(item => character.ClassRace.Race.Name)
                     </td>
+                    <td class="tableClassIcons">
+                        <img src="~/Images/classIcons/@Html.DisplayFor(item => character.ClassRace.Class.Icon)" />
+                    </td>"
                     <td>
                         @Html.DisplayFor(item => character.Rank.Name)
                     </td>
