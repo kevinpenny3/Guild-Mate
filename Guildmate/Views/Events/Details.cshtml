@@ -89,17 +89,17 @@
         <tbody>
             @foreach (var character in Model.CharacterEvents)
             {
-                <tr class="@Html.DisplayFor(item => character.Character.ClassRace.Class.Name)Bg">
-                    <td>
-                        @Html.DisplayFor(item => character.Character.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => character.Character.ClassRace.Class.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => character.Role.Name)
-                    </td>
-                </tr>
+            <tr class="@Html.DisplayFor(item => character.Character.ClassRace.Class.Name)Bg">
+                <td>
+                    @Html.DisplayFor(item => character.Character.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => character.Character.ClassRace.Class.Name)
+                </td>
+                <td class="tableRoleIcons">
+                    <img src="~/Images/roleIcons/@Html.DisplayFor(item => character.Role.Icon)" />
+                </td>
+            </tr>
             }
         </tbody>
     </table>
