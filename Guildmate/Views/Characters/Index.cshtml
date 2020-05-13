@@ -1,61 +1,66 @@
-﻿@model Guildmate.Models.Character
+﻿@using Microsoft.AspNetCore.Identity;
+
+@model Guildmate.Models.Character
+@inject UserManager<ApplicationUser> userManager
 
 @{
     ViewData["Title"] = "Index";
 }
+<div>
 
-<h1>Character</h1>
+<div class="page-Title">
+    <h1>My Characters</h1>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClassRace.Race.Faction)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClassRace.Race)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClassRace.Class)
-            </th>
-                @if (Html.DisplayFor(modelItem => modelItem.Guild.Name) == null)
+@if(userManager.GetUserAsync(User).Result.Characters == null){ 
+<div class="jumbotron AllianceBgFull">
+    <h1 class="display-3">Please Create A Character</h1>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-lg neutralButton" asp-action="Create">Create New Character</a>
+    </p>
+</div>
+}else
+{
+
+<div class="characterCards">
+    @foreach (var character in Model.ApplicationUser.Characters)
+    {
+        <div class="characterCard card border-@Html.DisplayFor(model => model.ClassRace.Race.Faction.Name) mb-3" style="max-width: 20rem;">
+            <h2 class="card-header @Html.DisplayFor(model => model.ClassRace.Class.Name)Bg">@Html.DisplayFor(modelItem => modelItem.Name)</h2>
+            <div class="card-body">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ClassRace.Race.Faction)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ClassRace.Race.Faction.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ClassRace.Race)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ClassRace.Race.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ClassRace.Class)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ClassRace.Class.Name)
+                </dd>
+                @if (Html.DisplayFor(modelItem => modelItem.Guild.Name) != null)
                 {
-                
-                }else{
-                    <th>
+                    <dt>
                         @Html.DisplayNameFor(model => model.Guild)
-                    </th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Guild.Name)
+                    </dd>
                 }
-            </tr>
-    </thead>
-    <tbody>
-        <tr class="@Html.DisplayFor(model => model.ClassRace.Class.Name)Bg">
-            <td>
-                @Html.DisplayFor(modelItem => modelItem.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => modelItem.ClassRace.Race.Faction.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => modelItem.ClassRace.Race.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => modelItem.ClassRace.Class.Name)
-            </td>
-            @if(Html.DisplayFor(modelItem => modelItem.Guild.Name) != null)
-            {
-            <td>
-                @Html.DisplayFor(modelItem => modelItem.Guild.Name)
-            </td>
+            </div>
+        </div>
+    }
+</div>
 
-            }
-        </tr>
+}
 
-    </tbody>
-</table>
+</div>

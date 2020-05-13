@@ -96,6 +96,14 @@ body {
     background-color: #162c5780;
 }
 
+.HordeBgFull {
+    background-color: #8c1616;
+}
+
+.AllianceBgFull {
+    background-color: #162c57;
+}
+
 /*Class Colors*/
 
 .Druid {
@@ -170,4 +178,75 @@ body {
 
 .WarriorBg {
     background-color: #C79C6E80;
+}
+
+.homeBackground img {
+    margin: 0;
+    object-fit:cover;
+}
+
+img.BackgroundImage {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+    img.BackgroundImage{
+        left: 50%;
+        margin-left: -512px; /* 50% */
+    }
+}
+
+.jumbotron {
+    z-index: 1;
+    margin-top: 6rem;   
+}
+.jumbotron{
+    color: white;
+    text-align: center
+}
+
+ .jumbotron a{
+        background-color: white;
+        color: #162c57;
+    }
+
+.my-4 {
+    border-color:white;
+}
+
+.border-Alliance {
+    border-color: #162c57 !important
+}
+
+.border-Horde {
+    border-color: #8c1616 !important
+}
+
+.page-Title {
+    margin-top: 3rem;
+    text-align: center
+}
+
+.characterCard{
+    margin-top: 2rem;
+}
+
+.neutralButton {
+    background-color: white;
+    border-color: #162c57;
+}
+
+.pageInformation{
+    background-color: white;
+}
+
+a.nav-item:hover {
+    color: gold
 }

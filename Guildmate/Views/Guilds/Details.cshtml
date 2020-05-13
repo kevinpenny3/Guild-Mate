@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿ @using Microsoft.AspNetCore.Identity;
 
 @model Guildmate.Models.Guild
 @inject UserManager<ApplicationUser> userManager
@@ -32,22 +32,6 @@
                 @Html.DisplayFor(model => model.Faction.Name)
             </dd>
         </dl>
-        @foreach (var character in Model.Characters)
-        {
-            if (character.RankId == 1)
-            {
-                <form asp-action="DeleteGuild" asp-route-id="@Model.GuildId">
-                    <input type="submit" value="Delete" />
-                </form>
-            }
-            if (character.GuildId == null)
-            {
-                <form asp-action="JoinGuild" asp-route-id="@Model.GuildId" asp-controller="Characters">
-                    <input type="submit" value="Delete" />
-                </form>
-            }
-
-        }
     </div>
 
     <div class="GuildRoster">
@@ -67,6 +51,8 @@
                     <th>
                         Rank
                     </th>
+                    <th>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -74,29 +60,37 @@
                 {
                     @foreach (var character in Model.Characters)
                     {
-                        <tr class="@Html.DisplayFor(item => character.ClassRace.Class.Name)Bg">
-                            <td>
-                                @Html.DisplayFor(item => character.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => character.ClassRace.Class.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(item => character.ClassRace.Race.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(item => character.Rank.Name)
-                            </td>
-                            @if (character.RankId == 2)
-                            {
-                                <td>
-                                    <form asp-action="RemoveFromGuild" asp-route-id="@character.CharacterId" asp-controller="Characters">
-                                        <input type="hidden" value="@character.CharacterId" name="CharacterId" />
-                                        <input type="submit" value="Remove From Guild" />
-                                    </form>
-                                </td>
-                            }
-                        </tr>
+                <tr class="@Html.DisplayFor(item => character.ClassRace.Class.Name)Bg">
+                    <td>
+                        @Html.DisplayFor(item => character.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => character.ClassRace.Class.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(item => character.ClassRace.Race.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(item => character.Rank.Name)
+                    </td>
+                    @if (character.RankId == 1)
+                    {
+                        <td>
+                            <form asp-action="DeleteGuild" asp-route-id="@Model.GuildId">
+                                <input type="submit" value="Delete Guild" />
+                            </form>
+                        </td>
+                    }
+                    @if (character.RankId == 2)
+                    {
+                        <td>
+                            <form asp-action="RemoveFromGuild" asp-route-id="@character.CharacterId" asp-controller="Characters">
+                                <input type="hidden" value="@character.CharacterId" name="CharacterId" />
+                                <input type="submit" value="Remove From Guild" />
+                            </form>
+                        </td>
+                    }
+                </tr>
                     }
                 }
                 else
@@ -104,20 +98,20 @@
 
                     @foreach (var character in Model.Characters)
                     {
-                        <tr class="@Html.DisplayFor(item => character.ClassRace.Class.Name)Bg">
-                            <td>
-                                @Html.DisplayFor(item => character.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => character.ClassRace.Class.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(item => character.ClassRace.Race.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(item => character.Rank.Name)
-                            </td>
-                         </tr>
+            <tr class="@Html.DisplayFor(item => character.ClassRace.Class.Name)Bg">
+                <td>
+                    @Html.DisplayFor(item => character.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => character.ClassRace.Class.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => character.ClassRace.Race.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => character.Rank.Name)
+                </td>
+            </tr>
                    }
                  }
             </tbody>

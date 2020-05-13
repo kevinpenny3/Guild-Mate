@@ -1,8 +1,39 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
+    <div class="HomePage">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            {
+        <div class="jumbotron AllianceBgFull">
+            <h1 class="display-3">Welcome to GuildMate</h1>
+            <p class="lead">Explore Your Guild</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-lg" role="button" asp-area="" asp-controller="Guilds" asp-action="Details">Guild Details</a>
+                <a class="btn btn-lg" role="button" asp-area="" asp-controller="Events" asp-action="Index">Guild Events</a>
+            </p>
+        </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            }
+        }
+        else
+        {
+            <div class="jumbotron AllianceBgFull">
+                <h1 class="display-3">Welcome to GuildMate</h1>
+                <p class="lead">Please Log-In or Register</p>
+                <hr class="my-4">
+                <p class="lead">
+                    <a class="btn btn-lg" role="button" asp-area="Identity" asp-page="/Account/Login">Log-In</a>
+                    <a class="btn btn-lg" role="button" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                </p>
+            </div>
+
+        }
+    </div>
+

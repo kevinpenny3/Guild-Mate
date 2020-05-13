@@ -222,6 +222,41 @@ namespace Guildmate.Controllers
             }
         }
 
+        public async Task<ActionResult> LeaveGuild(int id)
+        {
+            var user = await GetCurrentUserAsync();
+
+            var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+            var character = await _context.Character.FirstOrDefaultAsync(c => c.CharacterId == id);
+            return View(character);
+        }
+
+        // POST: Characters/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> LeaveGuild(int id, CharacterGuildViewModel characterGuildViewModel)
+        {
+            try
+            {
+                var user = await GetCurrentUserAsync();
+                var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+                var character = await _context.Character.FirstOrDefaultAsync(c => c.CharacterId == id);
+
+                character.GuildId = null;
+                character.RankId = null;
+
+                _context.Character.Update(character);
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         // GET: Characters/Delete/5
         public ActionResult Delete(int id)
         {
