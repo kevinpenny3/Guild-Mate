@@ -6,71 +6,75 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div>
+<div class="CharacterIndex">
 
-<div class="page-Title">
-    <h1>My Characters</h1>
-</div>
+    <div class="Index-Title">
+    <h1>My Character</h1>
+    </div>
 
-@if(userManager.GetUserAsync(User).Result.Characters == null){ 
-<div class="jumbotron AllianceBgFull">
+    @if(userManager.GetUserAsync(User).Result.Characters == null){ 
+    <div class="jumbotron AllianceBgFull">
     <h1 class="display-3">Please Create A Character</h1>
     <hr class="my-4">
     <p class="lead">
         <a class="btn btn-lg neutralButton" asp-action="Create">Create New Character</a>
     </p>
-</div>
-}else
-{
+    </div>
+        }else
+        {
 
-<div class="characterCards">
+    <div class="characterCards">
     @foreach (var character in Model.ApplicationUser.Characters)
     {
         <div class="characterCard card border-@Html.DisplayFor(model => model.ClassRace.Race.Faction.Name) mb-3" style="max-width: 20rem;">
             <div class="card-header @Html.DisplayFor(model => model.ClassRace.Class.Name)Bg">
-                @*<div>
+                <div>
                     <img src="~/Images/classIcons/@Html.DisplayFor(model => model.ClassRace.Class.Icon)" />
-                </div>*@
+                </div>
                 <div>
                     <h2>@Html.DisplayFor(modelItem => modelItem.Name)</h2>
                 </div>
             </div>
-            <div class="card">
-                <img src="~/Images/classIcons/@Html.DisplayFor(model => model.ClassRace.Class.Icon)" class="card-img-top" />
-                <div class="card-img-overlay">
-                <dt>
-                    @Html.DisplayNameFor(model => model.ClassRace.Race.Faction)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ClassRace.Race.Faction.Name)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.ClassRace.Race)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ClassRace.Race.Name)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.ClassRace.Class)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ClassRace.Class.Name)
-                </dd>
-                @if (Html.DisplayFor(modelItem => modelItem.Guild.Name) != null)
-                {
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Guild)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Guild.Name)
+            <div class="CharacterInfoText">
+                <dl class="row">
+                    <dd class="col-sm-8">
+                        <div class="CharacterInfoLines">
+                            <p>Faction:</p> @Html.DisplayFor(model => model.ClassRace.Race.Faction.Name)
+                        </div>
                     </dd>
-                }
-                </div>
+                    <dd class="col-sm-8">
+                        <div class="CharacterInfoLines">
+                            <p>Race:</p> @Html.DisplayFor(model => model.ClassRace.Race.Name)
+                        </div>
+                    </dd>
+                    <dd class="col-sm-8">
+                        <div class="CharacterInfoLines">
+                            <p>Race:</p> @Html.DisplayFor(model => model.ClassRace.Class.Name)
+                        </div>
+                    </dd>
+                    @if (Model.GuildId != null)
+                    @*@if (Html.DisplayFor(modelItem => modelItem.Guild.Name) != null)*@
+                    {
+                        <dd class="col-sm-8">
+                            <div class="CharacterInfoLines">
+                                <p>Guild:</p> @Html.DisplayFor(model => model.Guild.Name)
+                            </div>
+                        </dd>
+                    }
+                    else
+                    {
+                        <dd class="col-sm-8 guildBtn">
+                            <div class="guildbtn">
+                                <a class="btn CharacterGuildBtn" role="button" asp-area="" asp-controller="Guilds" asp-action="Details">Join a Guild</a>
+                            </div>
+                        </dd>
+                            }
+                    </dl>
             </div>
-        </div>
+            </div>
     }
-</div>
+    </div>
 
-}
+    }
 
 </div>
