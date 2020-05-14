@@ -272,3 +272,81 @@ a.nav-item:hover {
     height: 40px;
     width: auto
 }
+
+.navLogo img {
+    width: 40px;
+    height: auto;
+}
+.jumboLogo img {
+    height: 150px;
+    width: auto
+}
+
+.GuildDetails {
+    background-color: #F6F6F6;
+    padding: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    display: flex
+    
+}
+
+.guildInfoCard {
+    background-color: #FAFAFA;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin: 1rem;
+    flex-basis: 28%
+}
+.guildRosterCard {
+    background-color: #FAFAFA;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin: 1rem;
+    flex-basis: 68%
+}
+
+.guildFactionLogo img {
+    width: 60px;
+    height: auto;
+    margin-top: .5rem;
+    padding: .5rem;
+}
+
+.guildInfoHeader {
+    background-color: #e9e9e9;
+    padding: .5rem;
+    margin: 0px;
+    border-radius: .3rem .3rem 0 0;
+}
+
+.guildRosterHeader {
+    background-color: #e9e9e9;
+    padding: .5rem;
+    margin: 0px;
+    border-radius: .3rem .3rem 0 0;
+}
+
+.GuildInfoText {
+    margin-top: .3rem;
+    padding: .5rem;
+    display: flex
+}
+.roster table {
+    margin-top: 1rem;
+}
+
+.GuildInfoText p {
+    font-weight: bold;
+    margin-bottom: .5rem;
+    
+}
+
+.guildInfoLines{
+    display: flex;
+}
+
+.guildInfoLines p {
+    margin-right: .5rem
+}

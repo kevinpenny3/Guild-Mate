@@ -2018,13 +2018,12 @@ pre {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #3E3F3A
+    color: #3E3F3A;
 }
 
     .table th, .table td {
         padding: 0.75rem;
-        vertical-align: top;
-        border-top: 1px solid #DFD7CA
+        border-top: 1px solid #DFD7CA;
     }
 
     .table thead th {
