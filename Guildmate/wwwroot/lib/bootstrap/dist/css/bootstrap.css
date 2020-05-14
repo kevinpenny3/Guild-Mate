@@ -2850,20 +2850,20 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #325D88;
-    border-color: #325D88
+    background-color: #162c57;
+    border-color: #162c57
 }
 
     .btn-primary:hover {
         color: #fff;
-        background-color: #284a6c;
-        border-color: #244463
+        background-color: goldenrod;
+        border-color: #162c57
     }
 
     .btn-primary:focus, .btn-primary.focus {
         color: #fff;
-        background-color: #284a6c;
-        border-color: #244463;
+        background-color: #162c57;
+        border-color: #162c57;
         -webkit-box-shadow: 0 0 0 0.2rem rgba(81,117,154,0.5);
         box-shadow: 0 0 0 0.2rem rgba(81,117,154,0.5)
     }
@@ -4519,7 +4519,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
         .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
             border-color: #DFD7CA;
-            color: gold
+            color: darkgoldenrod
         }
 
         .nav-tabs .nav-link.disabled {

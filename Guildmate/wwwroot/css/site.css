@@ -17,9 +17,9 @@ a {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #162c57;
+    border-color: #162c57;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -88,20 +88,23 @@ body {
 }
 
 /*Faction Backgrounds*/
-.Hordebg {
-    background-color: #8c161680;
+.HordeBg {
+    background-color: #8c161640;
+
 }
 
-.Alliancebg {
-    background-color: #162c5780;
+.AllianceBg {
+    background-color: #162c5740;
 }
 
 .HordeBgFull {
     background-color: #8c1616;
+    color: white
 }
 
 .AllianceBgFull {
     background-color: #162c57;
+    color: white
 }
 
 /*Class Colors*/
@@ -408,3 +411,56 @@ a.nav-item:hover {
     margin-left: auto;
     margin-right: auto
 }
+
+.ServerIndex {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.serversHeader {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    justify-content: center;
+}
+
+
+.CreateGuild {
+    display: flex;
+    justify-content: center
+
+}
+
+.serverSearch{
+    margin-left: .2rem
+}
+
+.createGuildBtn {
+    margin: .5rem;
+    color: white;
+}
+
+.GuildsIndex {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.guildsHeader {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    justify-content: center;
+}
+
+.guildSearch {
+    margin-left: .2rem
+}
+

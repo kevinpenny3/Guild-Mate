@@ -5,60 +5,73 @@
 @{
     ViewData["Title"] = "Index";
 }
+    <div class="GuildsIndex">
+        <div class="Index-Title">
+            <h1>Guilds</h1>
+        </div>
+            <div class="CreateGuild">
+                <a class="btn createGuildBtn btn-primary" asp-action="Create">Create New Guild</a>
+             </div>
+            <div class="guildsHeader">
+                <div class="filters">
+                        @Html.ActionLink("Horde Guilds", "Index", new { filter = "horde" }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Alliance Guilds", "Index", new { filter = "alliance" }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Show All guilds", "Index", new { filter = "all" }, new { @class = "btn btn-primary" })
+                    </div>
+                        <div class="guildSearch">
+                            <form class="form-inline my-2 my-lg-0" asp-controller="Guilds" asp-action="Index">
+                                <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Server Name">
+                                <button class="btn btn-secondary my-2 my-sm-0 compSearch" type="submit">Filter</button>
+                            </form>
+                        </div>
+                </div>
 
-<h1>Guilds</h1>
-<p>
-    <a asp-action="Create">Create New Guild</a>
-</p>
 
-<form class="form-inline my-2 my-lg-0" asp-controller="Guilds" asp-action="Index">
-    <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Server Name">
-    <button class="btn btn-secondary my-2 my-sm-0 compSearch" type="submit">Filter</button>
-</form>
-<hr />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Faction)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Server)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr class="@Html.DisplayFor(modelItem => item.Faction.Name)BgFull">
+                            <td>
+                                <img src="~/Images/@Html.DisplayFor(modelItem => item.Faction.Name)Round.png" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Server.Name)
+                            </td>
+                            @if (userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.ClassRace.Race.FactionId == item.FactionId) != null)
+                            {
+                                <td>
+                                    <form asp-action="JoinGuild" asp-route-id="@item.GuildId" asp-controller="Characters">
+                                        <input type="hidden" value="@item.GuildId" name="GuildId" />
+                                        <input type="submit" value="Join Guild" />
+                                    </form>
 
-@Html.ActionLink("Horde Guilds", "Index", new { filter = "horde" }, new { @class = "btn btn-primary" })
-@Html.ActionLink("Alliance Guilds", "Index", new { filter = "alliance" }, new { @class = "btn btn-primary" })
-@Html.ActionLink("Show All guilds", "Index", new { filter = "all" }, new { @class = "btn btn-primary" })
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Server)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Faction)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Server.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Faction.Name)
-            </td>
-           @if(userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.ClassRace.Race.FactionId == item.FactionId) != null)
-            {
-            <td>
-                      <form asp-action="JoinGuild"  asp-route-id="@item.GuildId" asp-controller="Characters">
-                          <input type="hidden" value="@item.GuildId" name="GuildId" />
-                          <input type="submit" value="Join Guild" />
-                      </form>
-
-            </td>
-                }
-            </tr>
-        }
-    </tbody>
-</table>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    Opposing Faction
+                                </td>
+                            }
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>

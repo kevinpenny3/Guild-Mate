@@ -178,7 +178,7 @@ namespace Guildmate.Controllers
                 _context.Character.Update(userCharacter);
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Guilds");
 
             }
             catch
@@ -213,7 +213,7 @@ namespace Guildmate.Controllers
                 _context.Character.Update(character);
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Guilds");
 
             }
             catch

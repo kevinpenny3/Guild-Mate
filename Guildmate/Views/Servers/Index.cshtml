@@ -3,53 +3,60 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class="ServerIndex">
+    <div class="Index-Title">
+    <h1>Guild Search</h1>
+    </div>
 
-<h1>Servers</h1>
+        <div class="CreateGuild">
+            <a class="btn createGuildBtn btn-primary" asp-action="Create" asp-controller="Guilds">Create New Guild</a>
+        </div>
+        <div class="serversHeader">
 
-<p>
-    <a asp-action="Create" asp-controller="Guilds">Create New Guild</a>
-</p>
+        <div class="filters">
+            @Html.ActionLink("US East", "Index", new { filter = "east" }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("US West", "Index", new { filter = "west" }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Show All", "Index", new { filter = "all" }, new { @class = "btn btn-primary" })
+        </div>
+        <div class="serverSearch">
+            <form class="form-inline my-2 my-lg-0 serverSearch" asp-controller="Servers" asp-action="Index">
+                <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Server Name">
+                <button class="btn btn-secondary my-2 my-sm-0 compSearch" type="submit">Filter</button>
+            </form>
+        </div>
+
+    </div>
 
 
-<form class="form-inline my-2 my-lg-0" asp-controller="Servers" asp-action="Index">
-    <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Server Name">
-    <button class="btn btn-secondary my-2 my-sm-0 compSearch" type="submit">Filter</button>
-</form>
-<hr/>
-@Html.ActionLink("US East", "Index", new { filter = "east" }, new { @class = "btn btn-primary" })
-@Html.ActionLink("US West", "Index", new { filter = "west" }, new { @class = "btn btn-primary" })
-@Html.ActionLink("Show All", "Index", new { filter = "all" }, new { @class = "btn btn-primary" })
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Region)
-            </th>
-            <th>
-                Guilds
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-striped table-hover">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Region.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Guilds", "Index", "Guilds" , new { server = item.ServerId, filter = "all" }, new { @class = "btn btn-primary" })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Region)
+                </th>
+                <th>
+                    Guilds
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Region.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Guilds", "Index", "Guilds" , new { server = item.ServerId, filter = "all" }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
