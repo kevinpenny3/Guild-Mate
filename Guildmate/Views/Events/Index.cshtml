@@ -5,58 +5,105 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-@if (userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.RankId == 1) != null)
-{
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-}
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxAttendees)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Guild)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
+<div class="EventIndex">
+        <h1>Index</h1>
+        @if (userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.RankId == 1) != null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaxAttendees)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Guild.Name)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.EventId">Details</a>
-                </td>
-            </tr>
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+
+
         }
-    </tbody>
-</table>
+
+    <div class="EventCards">
+        @foreach (var singleEvent in Model)
+         {
+            <div class="eventCard card" style="max-width: 20rem;">
+                <div class="card-header">
+                    <div>
+                        <h2>@Html.DisplayFor(modelItem => singleEvent.Name)</h2>
+                    </div>
+                </div>
+                <div class="EventInfoText">
+                    <dl class="row">
+                        <dd class="col-sm-8">
+                            <div class="eventInfoLines">
+                                <p>Start:</p> @Html.DisplayFor(modelItem => singleEvent.StartDate)
+                            </div>
+                        </dd>
+                        @if (singleEvent.EndDate != null)
+                        {
+                            <dd class="col-sm-8">
+                                <div class="eventInfoLines">
+                                    <p>End</p> @Html.DisplayFor(modelItem => singleEvent.EndDate)
+                                </div>
+                            </dd>
+                        }
+                        <dd class="col-sm-8">
+                            <div class="eventInfoLines">
+                                <p>Max Attendees:</p> @Html.DisplayFor(modelItem => singleEvent.MaxAttendees)
+                            </div>
+                        </dd>
+                        <dd class="col-sm-8">
+                            <div class="eventInfoLines">
+                                @*<p>Current Attendees:</p> @singleEvent.CharacterEvents.Count()*@
+                            </div>
+                        </dd>
+                        <dd class="col-sm-8">
+                            <a asp-action="Details" asp-route-id="@singleEvent.EventId">Details</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+         }
+    </div>
+</div>
+        @*<table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MaxAttendees)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Guild)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaxAttendees)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Guild.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.EventId">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@

@@ -70,7 +70,7 @@ namespace Guildmate.Controllers
                 _context.CharacterEvent.Add(characterEvent);
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Events", characterEventsViewModel.EventId);
             }
             catch
             {

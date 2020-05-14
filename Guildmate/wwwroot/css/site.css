@@ -464,3 +464,77 @@ a.nav-item:hover {
     margin-left: .2rem
 }
 
+.EventDetails {
+    background-color: #F6F6F6;
+    padding: 1rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    display: flex
+}
+
+.eventRosterCard {
+    background-color: #FFFFFF;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin: 1rem;
+    flex-basis: 60%
+}
+
+.eventRosterHeader {
+    background-color: #e9e9e9;
+    padding: .5rem;
+    margin: 0px;
+    border-radius: .3rem .3rem 0 0;
+    display: flex
+}
+
+.eventRosterHeader a {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto
+}
+
+.eventInfoCard {
+    background-color: #FFFFFF;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin: 1rem;
+    flex-basis: 35%
+}
+
+.eventInfoHeader {
+    background-color: #e9e9e9;
+    padding: .5rem;
+    margin: 0px;
+    border-radius: .3rem .3rem 0 0;
+}
+
+.eventInfoLines {
+    display: flex;
+}
+.eventInfoLines p {
+   margin-right: .5rem;
+}
+
+.EventInfoText p {
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+.EventInfoText {
+    margin-top: .3rem;
+    padding: .5rem;
+    display: flex
+}
+
+.EventCards {
+    display: flex;
+    justify-content: center
+}
+.eventCard {
+    flex-wrap: wrap;
+    flex-basis: 35%;
+    margin: 1rem
+    
+}
