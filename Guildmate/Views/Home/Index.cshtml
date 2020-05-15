@@ -10,7 +10,7 @@
         @if (SignInManager.IsSignedIn(User))
         {
             {
-        <div class="jumbotron AllianceBgFull">
+        <div class="jumbotron AllianceBgFull" id="homeJumbo">
             <div class="jumboImage">
                 <span class="jumboLogo">
                         <img src="~/Images/guildmateIcon.png" />
@@ -29,8 +29,13 @@
         }
         else
         {
-            <div class="jumbotron AllianceBgFull">
-                <h1 class="display-3">Welcome to GuildMate</h1>
+            <div class="jumbotron AllianceBgFull" id="homeJumbo">
+                <div class="jumboImage">
+                    <span class="jumboLogo">
+                        <img src="~/Images/guildmateIcon.png" />
+                    </span>
+                    <img src="~/Images/guildmatetextW.png" />
+                </div>
                 <p class="lead">Please Log-In or Register</p>
                 <hr class="my-4">
                 <p class="lead">

@@ -6,15 +6,18 @@
     ViewData["Title"] = "Index";
 }
 <div class="EventIndex">
-        <h1>Index</h1>
+    <div class="Index-Title">
+        <h1>Guild Events</h1>
+    </div>
+    <div class="createEventBtn">
         @if (userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.RankId == 1) != null)
         {
-            <p>
-                <a asp-action="Create">Create New</a>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" asp-action="Create">Create Event</a>
             </p>
 
-
-        }
+                }
+        </div>
 
     <div class="EventCards">
         @foreach (var singleEvent in Model)
@@ -50,11 +53,11 @@
                                 @*<p>Current Attendees:</p> @singleEvent.CharacterEvents.Count()*@
                             </div>
                         </dd>
-                        <dd class="col-sm-8">
-                            <a asp-action="Details" asp-route-id="@singleEvent.EventId">Details</a>
-                        </dd>
                     </dl>
                 </div>
+                    <div class="EventDetailsBtn">
+                    <a class="btn btn-primary btn-block" asp-action="Details" asp-route-id="@singleEvent.EventId">Details</a>
+                    </div>
             </div>
 
          }

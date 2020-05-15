@@ -45,15 +45,15 @@
                     </dl>
                 </div>
             </div>
-        </div>
-
             @if (userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.RankId == 1) != null)
             {
                 <div>
-                    <a asp-action="Edit" asp-route-id="@Model.EventId">Edit</a> |
-                    <a asp-action="Index">Back to Events</a>
+                    <a asp-action="Edit" asp-route-id="@Model.EventId" class="btn btn-primary btn-sm">Edit</a> |
+                    <a asp-action="Index" class="btn btn-primary btn-sm">Back to Events</a>
                 </div>
             }
+        </div>
+
 
 
     <div class="EventRoster eventRosterCard">
@@ -64,11 +64,11 @@
             </a>
         </div>
             <div class="roster">
-                <table class="table">
+                <table class="table table-striped">
                     <tbody>
                         @foreach (var character in Model.CharacterEvents)
                         {
-                        <tr class="@Html.DisplayFor(item => character.Character.ClassRace.Class.Name)Bg">
+                        <tr>
                             <td class="tableRoleIcons">
                                 <img src="~/Images/roleIcons/@Html.DisplayFor(item => character.Role.Icon)" />
                             </td>

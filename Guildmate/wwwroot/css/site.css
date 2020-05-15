@@ -212,7 +212,7 @@ img.BackgroundImage {
 
 .jumbotron {
     z-index: 1;
-    margin-top: 6rem;
+    margin-top: 1rem;
 }
 .jumbotron{
     color: white;
@@ -243,7 +243,7 @@ img.BackgroundImage {
 
 .characterCard{
     margin-top: 2rem;
-    align-content: center
+    align-content: center;
 }
 
 .neutralButton {
@@ -269,11 +269,15 @@ a.nav-item:hover {
 }
 
 .tableClassIcons img{
-    height: 40px;
+    height: 50px;
     width:auto
 }
 .tableRoleIcons img {
-    height: 40px;
+    height: 50px;
+    width: auto
+}
+.tableFactionIcons img {
+    height: 50px;
     width: auto
 }
 
@@ -378,15 +382,19 @@ a.nav-item:hover {
 
 .CharacterIndex {
     background-color: #FAFAFA;
-    padding-bottom: 2rem;
     border-radius: .3rem;
-    border: 1px solid #162c5780;
     margin-top: 2rem;
     min-width: 20rem;
+    padding-bottom: 2rem;
 }
+
+
 .characterCard {
     margin-left: auto;
     margin-right: auto;
+}
+.characterCards {
+    margin-bottom: 2rem;
 }
 
 .CharacterIndex h1 {
@@ -525,7 +533,7 @@ a.nav-item:hover {
 .EventInfoText {
     margin-top: .3rem;
     padding: .5rem;
-    display: flex
+    display: flex;
 }
 
 .EventCards {
@@ -535,6 +543,136 @@ a.nav-item:hover {
 .eventCard {
     flex-wrap: wrap;
     flex-basis: 35%;
-    margin: 1rem
+    margin: 1rem;
+    flex-direction: column
     
 }
+
+.guildsSearchTable {
+    padding-left: 2rem;
+}
+
+.guildsSearchTable td {
+    text-align: center
+}
+
+.guildsSearchTable th {
+    text-align: center
+}
+
+.classIcon img {
+    height: 100px;
+    width: auto
+}
+
+.uppercase{
+    text-transform: capitalize;
+}
+
+.CreateCharacter {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.characterCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.GuildCreate {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.guildCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.LoginForm {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.loginCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.RegisterForm {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.registerCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.jumobtron.characterjumbo{
+    padding: 1rem;
+}
+
+#homeJumbo {
+    margin-top: 6rem;
+}
+
+.EventCreate {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.eventCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.EventIndex {
+    background-color: #FAFAFA;
+    border-radius: .3rem;
+    margin-top: 2rem;
+    min-width: 20rem;
+    padding-bottom: 2rem;
+}
+
+.createEventBtn {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center
+}
+.EventDetailsBtn {
+    position: absolute;
+    bottom: 0;
+    width: 100%
+}
+
+
+
+

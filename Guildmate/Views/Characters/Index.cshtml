@@ -13,7 +13,7 @@
     </div>
 
     @if(userManager.GetUserAsync(User).Result.Characters == null){ 
-    <div class="jumbotron AllianceBgFull">
+    <div class="jumbotron characterjumbo AllianceBgFull">
     <h1 class="display-3">Please Create A Character</h1>
     <hr class="my-4">
     <p class="lead">
@@ -28,7 +28,7 @@
     {
         <div class="characterCard card border-@Html.DisplayFor(model => model.ClassRace.Race.Faction.Name) mb-3" style="max-width: 20rem;">
             <div class="card-header @Html.DisplayFor(model => model.ClassRace.Class.Name)Bg">
-                <div>
+                <div class="classIcon">
                     <img src="~/Images/classIcons/@Html.DisplayFor(model => model.ClassRace.Class.Icon)" />
                 </div>
                 <div>

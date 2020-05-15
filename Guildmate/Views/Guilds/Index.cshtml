@@ -27,7 +27,7 @@
                 </div>
 
 
-                <table class="table">
+                <table class="table table-striped guildsSearchTable">
                     <thead>
                         <tr>
                             <th>
@@ -39,13 +39,16 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Server)
                             </th>
+                            <th>
+                                Guild Join
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr class="@Html.DisplayFor(modelItem => item.Faction.Name)BgFull">
-                            <td>
+                        <tr>
+                            <td  class="tableFactionIcons">
                                 <img src="~/Images/@Html.DisplayFor(modelItem => item.Faction.Name)Round.png" />
                             </td>
                             <td>
@@ -54,22 +57,20 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Server.Name)
                             </td>
-                            @if (userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.ClassRace.Race.FactionId == item.FactionId) != null)
-                            {
-                                <td>
+                            <td>
+                                @if (userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.ClassRace.Race.FactionId == item.FactionId) != null)
+                                 {
                                     <form asp-action="JoinGuild" asp-route-id="@item.GuildId" asp-controller="Characters">
+                                        
                                         <input type="hidden" value="@item.GuildId" name="GuildId" />
-                                        <input type="submit" value="Join Guild" />
+                                        <input type="submit" class="btn btn-primary btn-lg" value="Join Guild"/>
                                     </form>
-
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    Opposing Faction
-                                </td>
-                            }
+                                 }
+                                else
+                                {
+                                    <p>Opposing Faction</p>
+                                }
+                            </td>
                         </tr>
                         }
                     </tbody>

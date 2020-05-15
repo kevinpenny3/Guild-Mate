@@ -45,17 +45,17 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Region.Name)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Guilds", "Index", "Guilds" , new { server = item.ServerId, filter = "all" }, new { @class = "btn btn-primary" })
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Region.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Guilds", "Index", "Guilds", new { server = item.ServerId, filter = "all" }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
             }
         </tbody>
     </table>
