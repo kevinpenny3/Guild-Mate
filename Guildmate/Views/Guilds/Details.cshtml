@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿ @using Microsoft.AspNetCore.Identity;
 
 @model Guildmate.Models.Guild
 @inject UserManager<ApplicationUser> userManager
@@ -7,120 +7,103 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>@Html.DisplayFor(model => model.Name)</h1>
 
 <div class="GuildDetails">
+    <div class="guildInfoCard">
+        <div class="guildInfoHeader">
+            <h2>@Html.DisplayFor(model => model.Name)</h2>
+        </div>
 
-    <div class="GuildInfo">
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Server)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Server.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Faction)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Faction.Name)
-            </dd>
-        </dl>
-        @foreach (var character in Model.Characters)
-        {
-            if (character.RankId == 1)
-            {
-                <form asp-action="DeleteGuild" asp-route-id="@Model.GuildId">
-                    <input type="submit" value="Delete" />
-                </form>
-            }
-            if (character.GuildId == null)
-            {
-                <form asp-action="JoinGuild" asp-route-id="@Model.GuildId" asp-controller="Characters">
-                    <input type="submit" value="Delete" />
-                </form>
-            }
+        <div class="GuildInfo">
+                <span class="guildFactionLogo">
+                    <img src="~/Images/@Html.DisplayFor(model => model.Faction.Name)Round.png" />
+                </span>
+            <div class="GuildInfoText">
+                <dl class="row">
+                    <dd class="col-sm-8">
+                        <div class="guildInfoLines">
+                            <p>Server:</p> @Html.DisplayFor(model => model.Server.Name)
+                        </div>
+                    </dd>
+                    <dd class="col-sm-8">
+                        <div class="guildInfoLines">
+                            <p>Guild Members:</p> @Model.Characters.Count()
+                        </div>
+                    </dd>
+                    <a class="btn btn-primary btn-lg" asp-area="" asp-controller="Events" asp-action="Index">Guild Events</a>
+                </dl>
 
-        }
+            </div>
+        </div>
+
     </div>
 
-    <div class="GuildRoster">
-        <h3>Guild Roster</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Race
-                    </th>
-                    <th>
-                        Class
-                    </th>
-                    <th>
-                        Rank
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.RankId == 1) != null)
-                {
-                    @foreach (var character in Model.Characters)
+    <div class="GuildRoster guildRosterCard">
+        <div class="guildRosterHeader">
+            <h2>@Html.DisplayFor(model => model.Name) Roster</h2>
+        </div>
+        <div class="roster">
+            <table class="table table-striped">
+                <tbody>
+                    @if (userManager.GetUserAsync(User).Result.Characters.FirstOrDefault(c => c.RankId == 1) != null)
                     {
-                        <tr class="@Html.DisplayFor(item => character.ClassRace.Class.Name)Bg">
+                        @foreach (var character in Model.Characters)
+                        {
+                    <tr>
+                        <td class="tableClassIcons">
+                            <img src="~/Images/classIcons/@Html.DisplayFor(item => character.ClassRace.Class.Icon)" />
+                        </td>
+                        <td class="font-weight-bold uppercase">
+                            @Html.DisplayFor(item => character.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => character.ClassRace.Race.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => character.Rank.Name)
+                        </td>
+                        @if (character.RankId == 1)
+                        {
                             <td>
-                                @Html.DisplayFor(item => character.Name)
+                                <form asp-action="DeleteGuild" asp-route-id="@Model.GuildId">
+                                    <input type="submit" value="Delete Guild" />
+                                </form>
                             </td>
+                        }
+                        @if (character.RankId == 2)
+                        {
                             <td>
-                                @Html.DisplayFor(modelItem => character.ClassRace.Class.Name)
+                                <form asp-action="RemoveFromGuild" asp-route-id="@character.CharacterId" asp-controller="Characters">
+                                    <input type="hidden" value="@character.CharacterId" name="CharacterId" />
+                                    <input type="submit" value="Remove From Guild" />
+                                </form>
                             </td>
-                            <td>
-                                @Html.DisplayFor(item => character.ClassRace.Race.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(item => character.Rank.Name)
-                            </td>
-                            @if (character.RankId == 2)
-                            {
-                                <td>
-                                    <form asp-action="RemoveFromGuild" asp-route-id="@character.CharacterId" asp-controller="Characters">
-                                        <input type="hidden" value="@character.CharacterId" name="CharacterId" />
-                                        <input type="submit" value="Remove From Guild" />
-                                    </form>
-                                </td>
-                            }
-                        </tr>
+                        }
+                    </tr>
+                        }
                     }
-                }
-                else
-                {
-
-                    @foreach (var character in Model.Characters)
+                    else
                     {
-                        <tr class="@Html.DisplayFor(item => character.ClassRace.Class.Name)Bg">
-                            <td>
-                                @Html.DisplayFor(item => character.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => character.ClassRace.Class.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(item => character.ClassRace.Race.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(item => character.Rank.Name)
-                            </td>
-                         </tr>
-                   }
-                 }
-            </tbody>
-        </table>
+                        @foreach (var character in Model.Characters)
+                        {
+                <tr>
+                    <td class="tableClassIcons">
+                        <img src="~/Images/classIcons/@Html.DisplayFor(item => character.ClassRace.Class.Icon)" />
+                    </td>
+                    <td class="font-weight-bold uppercase">
+                        @Html.DisplayFor(item => character.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(item => character.ClassRace.Race.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(item => character.Rank.Name)
+                    </td>
+                </tr>
+                        }
+                     }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

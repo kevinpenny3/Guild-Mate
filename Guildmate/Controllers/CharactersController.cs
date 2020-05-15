@@ -178,7 +178,7 @@ namespace Guildmate.Controllers
                 _context.Character.Update(userCharacter);
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Guilds");
 
             }
             catch
@@ -200,6 +200,41 @@ namespace Guildmate.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveFromGuild(int id, CharacterGuildViewModel characterGuildViewModel)
+        {
+            try
+            {
+                var user = await GetCurrentUserAsync();
+                var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+                var character = await _context.Character.FirstOrDefaultAsync(c => c.CharacterId == id);
+
+                character.GuildId = null;
+                character.RankId = null;
+
+                _context.Character.Update(character);
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Guilds");
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public async Task<ActionResult> LeaveGuild(int id)
+        {
+            var user = await GetCurrentUserAsync();
+
+            var userCharacter = await _context.Character.FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id);
+            var character = await _context.Character.FirstOrDefaultAsync(c => c.CharacterId == id);
+            return View(character);
+        }
+
+        // POST: Characters/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> LeaveGuild(int id, CharacterGuildViewModel characterGuildViewModel)
         {
             try
             {

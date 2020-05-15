@@ -17,9 +17,9 @@ a {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #162c57;
+    border-color: #162c57;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -88,12 +88,23 @@ body {
 }
 
 /*Faction Backgrounds*/
-.Hordebg {
-    background-color: #8c161680;
+.HordeBg {
+    background-color: #8c161640;
+
 }
 
-.Alliancebg {
-    background-color: #162c5780;
+.AllianceBg {
+    background-color: #162c5740;
+}
+
+.HordeBgFull {
+    background-color: #8c1616;
+    color: white
+}
+
+.AllianceBgFull {
+    background-color: #162c57;
+    color: white
 }
 
 /*Class Colors*/
@@ -137,37 +148,546 @@ body {
 /*Class Background Colors*/
 
 .DruidBg {
-    background-color: #FF7D0A80;
+    background-color: #FF7D0ACC;
 }
 
 .HunterBg {
-    background-color: #A9D27180;
+    background-color: #A9D271CC;
 }
 
 .MageBg {
-    background-color: #40C7EB80;
+    background-color: #40C7EBCC;
 }
 
 .PaladinBg {
-    background-color: #F58CBA80;
+    background-color: #F58CBACC;
 }
 
 .PriestBg {
-    background-color: #FFFFFF80;
+    background-color: #FFFFFFCC;
 }
 
 .RogueBg {
-    background-color: #FFF56980;
+    background-color: #FFF569CC;
 }
 
 .ShamanBg {
-    background-color: #0070DE80;
+    background-color: #0070DECC;
 }
 
 .WarlockBg {
-    background-color: #8787ED80;
+    background-color: #8787EDCC;
 }
 
 .WarriorBg {
-    background-color: #C79C6E80;
+    background-color: #C79C6ECC;
 }
+
+.homeBackground img {
+    margin: 0;
+    object-fit:cover;
+}
+
+img.BackgroundImage {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+    img.BackgroundImage{
+        left: 50%;
+        margin-left: -512px; /* 50% */
+    }
+}
+
+.characterImage img{
+
+}
+
+.jumbotron {
+    z-index: 1;
+    margin-top: 1rem;
+}
+.jumbotron{
+    color: white;
+    text-align: center
+}
+
+ .jumbotron a{
+        background-color: white;
+        color: #162c57;
+    }
+
+.my-4 {
+    border-color:white;
+}
+
+.border-Alliance {
+    border-color: #162c57 !important
+}
+
+.border-Horde {
+    border-color: #8c1616 !important
+}
+
+.page-Title {
+    margin-top: 3rem;
+    text-align: center
+}
+
+.characterCard{
+    margin-top: 2rem;
+    align-content: center;
+}
+
+.neutralButton {
+    background-color: white;
+    border-color: #162c57;
+}
+
+.pageInformation{
+    background-color: white;
+}
+
+a.nav-item:hover {
+    color: gold
+}
+
+.characterRow {
+    background-color: lightgray;
+    margin: 0;
+}
+
+.card-img-top {
+    opacity: .15;
+}
+
+.tableClassIcons img{
+    height: 50px;
+    width:auto
+}
+.tableRoleIcons img {
+    height: 50px;
+    width: auto
+}
+.tableFactionIcons img {
+    height: 50px;
+    width: auto
+}
+
+.navLogo img {
+    width: 40px;
+    height: auto;
+}
+.jumboLogo img {
+    height: 150px;
+    width: auto
+}
+.characterInfo {
+    border-radius: .3rem;
+    margin: 1rem;
+    flex-basis: 28%
+}
+
+.GuildDetails {
+    background-color: #F6F6F6;
+    padding: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    display: flex
+}
+
+.guildInfoCard {
+    background-color: #FFFFFF;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin: 1rem;
+    flex-basis: 28%
+}
+.guildRosterCard {
+    background-color: #FFFFFF;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin: 1rem;
+    flex-basis: 68%
+}
+
+.guildFactionLogo img {
+    width: 60px;
+    height: auto;
+    margin-top: .5rem;
+    padding: .5rem;
+}
+
+.guildInfoHeader {
+    background-color: #e9e9e9;
+    padding: .5rem;
+    margin: 0px;
+    border-radius: .3rem .3rem 0 0;
+}
+
+.guildRosterHeader {
+    background-color: #e9e9e9;
+    padding: .5rem;
+    margin: 0px;
+    border-radius: .3rem .3rem 0 0;
+}
+
+.GuildInfoText {
+    margin-top: .3rem;
+    padding: .5rem;
+    display: flex
+}
+.roster table {
+    margin-top: 1rem;
+}
+
+.GuildInfoText p {
+    font-weight: bold;
+    margin-bottom: .5rem;
+    
+}
+
+.guildInfoLines{
+    display: flex;
+}
+
+.guildInfoLines p {
+    margin-right: .5rem
+}
+
+.CharacterInfoText {
+    margin-top: .3rem;
+    padding: .5rem;
+    display: flex
+}
+
+.CharacterInfoLines p {
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+.CharacterInfoLines {
+    display: flex;
+}
+.CharacterInfoLines p {
+    margin-right: .5rem
+}
+
+.CharacterIndex {
+    background-color: #FAFAFA;
+    border-radius: .3rem;
+    margin-top: 2rem;
+    min-width: 20rem;
+    padding-bottom: 2rem;
+}
+
+
+.characterCard {
+    margin-left: auto;
+    margin-right: auto;
+}
+.characterCards {
+    margin-bottom: 2rem;
+}
+
+.CharacterIndex h1 {
+    margin-top: 0px;
+}
+
+.Index-Title {
+    background-color: #162c57;
+    border-radius: .3rem .3rem 0 0;
+    padding: 1rem;
+    color: white;
+    text-align: center
+}
+
+.col-sm-8.GuildBtn{
+    margin-left:auto;
+}
+
+.guildbtn a {
+    background-color: #162c57;
+    color: white;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.ServerIndex {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.serversHeader {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    justify-content: center;
+}
+
+
+.CreateGuild {
+    display: flex;
+    justify-content: center
+
+}
+
+.serverSearch{
+    margin-left: .2rem
+}
+
+.createGuildBtn {
+    margin: .5rem;
+    color: white;
+}
+
+.GuildsIndex {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.guildsHeader {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    justify-content: center;
+}
+
+.guildSearch {
+    margin-left: .2rem
+}
+
+.EventDetails {
+    background-color: #F6F6F6;
+    padding: 1rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    display: flex
+}
+
+.eventRosterCard {
+    background-color: #FFFFFF;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin: 1rem;
+    flex-basis: 60%
+}
+
+.eventRosterHeader {
+    background-color: #e9e9e9;
+    padding: .5rem;
+    margin: 0px;
+    border-radius: .3rem .3rem 0 0;
+    display: flex
+}
+
+.eventRosterHeader a {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto
+}
+
+.eventInfoCard {
+    background-color: #FFFFFF;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin: 1rem;
+    flex-basis: 35%
+}
+
+.eventInfoHeader {
+    background-color: #e9e9e9;
+    padding: .5rem;
+    margin: 0px;
+    border-radius: .3rem .3rem 0 0;
+}
+
+.eventInfoLines {
+    display: flex;
+}
+.eventInfoLines p {
+   margin-right: .5rem;
+}
+
+.EventInfoText p {
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+.EventInfoText {
+    margin-top: .3rem;
+    padding: .5rem;
+    display: flex;
+}
+
+.EventCards {
+    display: flex;
+    justify-content: center
+}
+.eventCard {
+    flex-wrap: wrap;
+    flex-basis: 35%;
+    margin: 1rem;
+    flex-direction: column
+    
+}
+
+.guildsSearchTable {
+    padding-left: 2rem;
+}
+
+.guildsSearchTable td {
+    text-align: center
+}
+
+.guildsSearchTable th {
+    text-align: center
+}
+
+.classIcon img {
+    height: 100px;
+    width: auto
+}
+
+.uppercase{
+    text-transform: capitalize;
+}
+
+.CreateCharacter {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.characterCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.GuildCreate {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.guildCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.LoginForm {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.loginCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.RegisterForm {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.registerCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.jumobtron.characterjumbo{
+    padding: 1rem;
+}
+
+#homeJumbo {
+    margin-top: 6rem;
+}
+
+.EventCreate {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.eventCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.EventIndex {
+    background-color: #FAFAFA;
+    border-radius: .3rem;
+    margin-top: 2rem;
+    min-width: 20rem;
+    padding-bottom: 2rem;
+}
+
+.createEventBtn {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center
+}
+.EventDetailsBtn {
+    position: absolute;
+    bottom: 0;
+    width: 100%
+}
+
+.RoleCreate {
+    background-color: #FAFAFA;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    border: 1px solid #162c5780;
+    margin-top: 2rem;
+    min-width: 20rem;
+}
+
+.roleCreateForm {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+
+
+
